@@ -1,6 +1,10 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -10,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     public float walkSpeed = 5f;
 
     public float sprintSpeed = 10f;
+
+    private bool _isSprinting;
+    private bool _canSprint;
 
     [Space(7f)]
     public float dashForce = 30f;
@@ -27,20 +34,13 @@ public class PlayerMovement : MonoBehaviour
 
 
     private CharacterController _characterController;
+    private CameraController _camController;
     private InputSystem_Actions _controls;
     private Vector2 _moveInput;
     private Vector3 _movementVelocity;
     private Vector3 _externalMomentum = Vector3.zero;
     public Vector3 LastDirection { get; private set; }
     public Vector3 LookingDirection { get; private set; }
-
-    public MovementState state;
-    public enum MovementState
-    {
-        walkling,
-        sprinting,
-    }
-
 
     private void Awake()
     {
@@ -69,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
         _controls.Player.Move.performed += ctx =>
         {
             _moveInput = ctx.ReadValue<Vector2>();
+            _moveSpeed = walkSpeed;
             Quaternion camRotation = Quaternion.Euler(0f, _camController.transform.eulerAngles.y, 0f);
             transform.rotation = camRotation;
             _camController._resetXRotation = 0f;
@@ -89,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
             if (_canSprint)
             {
                 _isSprinting = true;
+                _moveSpeed = sprintSpeed;
             }
         };
         _controls.Player.Sprint.canceled += ctx =>
@@ -123,12 +125,21 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        GameObject camera = Camera.main.gameObject; //_camController.gameObject;
-        //_camController._MouseInput = _controls.Player.Look.ReadValue<Vector2>();
+        GameObject camera = _camController.gameObject; //_camController.gameObject;
+        _camController._MouseInput = _controls.Player.Look.ReadValue<Vector2>();
 
         if (_isDashing)
         {
             return;
+        }
+
+        if (_isSprinting)
+        {
+            _moveSpeed = sprintSpeed;
+        }
+        else
+        {
+            _moveSpeed = walkSpeed;
         }
 
         Vector3 forward = camera.transform.forward; // directions based off cam position :man_juggling:
@@ -138,9 +149,8 @@ public class PlayerMovement : MonoBehaviour
         right.Normalize();
 
         Vector3 moveDirection = (forward * _moveInput.y) + (right * _moveInput.x);
-        Vector3 adjustedMoveDirection = AdjustMovementToSlope(moveDirection);
-        adjustedMoveDirection = adjustedMoveDirection.normalized;
-        adjustedMoveDirection.y = _movementVelocity.y;
+        moveDirection = moveDirection.normalized;
+        moveDirection.y = _movementVelocity.y;
 
         #region dash direction
 
@@ -162,8 +172,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (_moveInput.magnitude > 0.01f)
         {
-            _movementVelocity.x = adjustedMoveDirection.x * _moveSpeed;
-            _movementVelocity.z = adjustedMoveDirection.z * _moveSpeed;
+            _movementVelocity.x = moveDirection.x * _moveSpeed;
+            _movementVelocity.z = moveDirection.z * _moveSpeed;
         }
         else
         {
@@ -179,60 +189,12 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 finalMovement = (_movementVelocity + _externalMomentum * Time.deltaTime);
 
-            _characterController.Move(finalMovement);
+        _characterController.Move(finalMovement);
     }
 
     private void FixedUpdate()
     {
 
-            if (_isDashing)
-            {
-                _movementVelocity.y = 0f; //gravity on dash is lame
-            }
-            else
-            {
-                _movementVelocity.y += gravity * gravityMultiplier * Time.deltaTime;
-            }
-    }
-
-    private Vector3 AdjustMovementToSlope(Vector3 inputDir)
-    {
-        //if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, groundCheckDistance, groundLayer))
-        //{
-        //    float slopeAngle = Vector3.Angle(Vector3.up, hit.normal);
-        //    if (slopeAngle <= _characterController.slopeLimit)
-        //    {
-        //        return Vector3.ProjectOnPlane(inputDir, hit.normal).normalized;
-        //    }
-        //    else
-        //    {
-        //        return Vector3.zero;
-        //    }
-        //}
-
-        return inputDir;
-    }
-
-    public bool IsMovingDownSlope(Vector3 inputDir)
-    {
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, groundCheckDistance, groundLayer))
-        {
-            Vector3 groundNormal = hit.normal;
-
-            if (Mathf.Approximately(groundNormal.y, 1f))
-            {
-                return false;
-            }
-
-            Vector3 downhillDirection = Vector3.ProjectOnPlane(Vector3.down, groundNormal).normalized;
-
-            Vector3 moveDir = new Vector3(inputDir.x, 0, inputDir.z).normalized;
-
-            float dotProduct = Vector3.Dot(moveDir, downhillDirection);
-
-            return dotProduct > 0.05f;
-        }
-        return false;
     }
 
   
@@ -284,14 +246,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Matrix4x4 originalMatrix = Gizmos.matrix;
-
-
-        Gizmos.color = Color.green; //groundcheck
-
-        Gizmos.matrix = originalMatrix;
-
-        Gizmos.color = Color.red; //groundcheck ray
 
         Gizmos.color = Color.blue; //direction lines
         Gizmos.DrawLine(transform.position, transform.position + LastDirection * 2f);
