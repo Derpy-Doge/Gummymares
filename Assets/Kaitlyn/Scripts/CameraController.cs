@@ -8,7 +8,9 @@ public class CameraController : MonoBehaviour
     public Transform cameraTransform;
 
     [Header("Camera Settings")]
+    [Range(1f, 100f)]
     public float verticalMouseSensitivity = 10f;
+    [Range(1f, 100f)]
     public float horizontalMouseSensitivity = 10f;
     [Tooltip("How far to the left or right you can look before the player's body turns.")]
     public float horizontalDeadzoneAngle = 80f;

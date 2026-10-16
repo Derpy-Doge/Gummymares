@@ -32,6 +32,16 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9.81f;
     public float gravityMultiplier = 2f;
 
+    [Header("Ground Check Settings")]
+    [Space(3f)]
+    public float groundCheckDistance = 6f;
+    public LayerMask groundLayer;
+
+    [SerializeField] private Transform _groundCheckPoint;
+    [SerializeField] private Vector3 _groundCheckSize;
+    private bool _isGrounded;
+    private bool _isMovingDownSlope;
+
 
     private CharacterController _characterController;
     private CameraController _camController;
@@ -45,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
-        _camController = GetComponentInChildren<CameraController>();
+        _camController = FindAnyObjectByType<CameraController>();
         _controls = new InputSystem_Actions();
         LastDirection = transform.forward;
 
@@ -149,8 +159,8 @@ public class PlayerMovement : MonoBehaviour
         right.Normalize();
 
         Vector3 moveDirection = (forward * _moveInput.y) + (right * _moveInput.x);
-        moveDirection = moveDirection.normalized;
-        moveDirection.y = _movementVelocity.y;
+        moveDirection.Normalize();
+        moveDirection.y = 0;
 
         #region dash direction
 
@@ -177,24 +187,43 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            _movementVelocity.x -= _movementVelocity.x * Time.deltaTime;
-            _movementVelocity.z -= _movementVelocity.z * Time.deltaTime;
+            _movementVelocity.x -= _movementVelocity.x * (Time.deltaTime * 2);
+            _movementVelocity.z -= _movementVelocity.z * (Time.deltaTime * 2);
 
             if (Mathf.Abs(_movementVelocity.x) < 0.01f) _movementVelocity.x = 0f;
             if (Mathf.Abs(_movementVelocity.z) < 0.01f) _movementVelocity.z = 0f;
             _externalMomentum.y = 0f;
+
+           // _movementVelocity.x = 0;
+           // _movementVelocity.z = 0;
         }
 
 
 
         Vector3 finalMovement = (_movementVelocity + _externalMomentum * Time.deltaTime);
 
-        _characterController.Move(finalMovement);
+        _characterController.Move(_movementVelocity);
     }
 
     private void FixedUpdate()
     {
+        _isGrounded = Physics.CheckBox(_groundCheckPoint.position, _groundCheckSize / 2, _groundCheckPoint.rotation, groundLayer);
 
+        if (_isGrounded && _movementVelocity.y < 0)
+        {
+            _movementVelocity.y = -2f;
+        }
+        else
+        {
+            if (_isDashing)
+            {
+                _movementVelocity.y = 0f; //gravity on dash is lame
+            }
+            else
+            {
+                _movementVelocity.y += gravity * gravityMultiplier * Time.deltaTime;
+            }
+        }
     }
 
   
@@ -246,9 +275,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Matrix4x4 originalMatrix = Gizmos.matrix;
+
+        Gizmos.matrix = _groundCheckPoint.localToWorldMatrix;
+
+        Gizmos.color = Color.green; //groundcheck
+        Gizmos.DrawCube(Vector3.zero, _groundCheckSize);
+
+        Gizmos.matrix = originalMatrix;
+
+        Gizmos.color = Color.red; //groundcheck ray
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundCheckDistance);
+
 
         Gizmos.color = Color.blue; //direction lines
         Gizmos.DrawLine(transform.position, transform.position + LastDirection * 2f);
+        Gizmos.color = Color.yellow;
         Gizmos.DrawLine(transform.position, transform.position + LookingDirection * 2);
     }
 }
