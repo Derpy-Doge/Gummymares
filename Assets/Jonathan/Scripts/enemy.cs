@@ -7,7 +7,7 @@ public class enemy : MonoBehaviour
     public float chaseRange;
    
 
-    private Rigidbody rb;
+    [HideInInspector]public Rigidbody rb;
   
     private bool isGrounded = false;
    
@@ -24,13 +24,14 @@ public class enemy : MonoBehaviour
         if (target != null)
         {
             // Calculate the direction towards the target
-            Vector2 direction = (target.position - transform.position).normalized;
+            Vector3 direction = (target.position - transform.position).normalized;
+            direction.y = 0;
 
             // Move towards the target if the distance is greater than the stopping distance;
-            float distance = Vector2.Distance(transform.position, target.position);
+            float distance = Vector3.Distance(transform.position, target.position);
             if (distance <= chaseRange)
             {
-                rb.linearVelocity = new Vector3(direction.x,0,direction.y) * moveSpeed * Time.deltaTime;
+                rb.linearVelocity = new Vector3(direction.x,0,direction.z) * moveSpeed * Time.deltaTime;
             }
             else
             {

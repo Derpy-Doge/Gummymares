@@ -1,33 +1,68 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Enemy_Spawn_Hitbox : MonoBehaviour
 {
     public float attackRadius = 1.5f;
-    public float attackRange;
+    
+
+    private bool isAttack;
+    private bool canAttack = true;
+    public float attackCooldown;
+    public float attackDuration;
+
     public LayerMask attackLayer;
+    private enemy enemy;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        enemy = GetComponent<enemy>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isAttack)
+        {
+            enemy.rb.linearVelocity = Vector3.zero;
+        }
+        
+        Collider[] hits = Physics.OverlapSphere(transform.position, attackRadius, attackLayer);
+        foreach (Collider col in hits)
+        {
+            if (canAttack)
+            {
 
+            StartCoroutine(Attack());
+            }
+            else
+            {
+                //Debug.Log("my father left");
+            }
+        }
     }
 
 
-    public void Attack(InputAction.CallbackContext ctx)
-    {
-      Physics.SphereCast(transform.position, attackRadius, Vector3.forward, out RaycastHit hit, attackRange, attackLayer);
+    public IEnumerator Attack()
 
-        if (hit.collider)
-        {
-            Debug.Log(hit.collider.gameObject.name);
-        }
+    {
+        isAttack = true;
+        canAttack = false;
+        
+            Collider[] hits = Physics.OverlapSphere(transform.position, attackRadius, attackLayer);
+
+            foreach (Collider col in hits)
+            {
+                Debug.Log(col.gameObject.name);
+            }
+        yield return new WaitForSeconds(attackDuration);
+        isAttack = false;
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
+
+        
     }
 
     private void OnDrawGizmos()
