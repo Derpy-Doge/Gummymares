@@ -159,8 +159,9 @@ public class PlayerMovement : MonoBehaviour
         right.Normalize();
 
         Vector3 moveDirection = (forward * _moveInput.y) + (right * _moveInput.x);
-        moveDirection.Normalize();
-        moveDirection.y = 0;
+        Vector3 adjustedMoveDirection = AdjustMovementToSlope(moveDirection);
+        adjustedMoveDirection = adjustedMoveDirection.normalized;
+        adjustedMoveDirection.y = _movementVelocity.y;
 
         #region dash direction
 
@@ -182,25 +183,21 @@ public class PlayerMovement : MonoBehaviour
 
         if (_moveInput.magnitude > 0.01f)
         {
-            _movementVelocity.x = moveDirection.x * _moveSpeed;
-            _movementVelocity.z = moveDirection.z * _moveSpeed;
+            _movementVelocity.x = adjustedMoveDirection.x * _moveSpeed;
+            _movementVelocity.z = adjustedMoveDirection.z * _moveSpeed;
         }
         else
         {
-            _movementVelocity.x -= _movementVelocity.x * (Time.deltaTime * 2);
-            _movementVelocity.z -= _movementVelocity.z * (Time.deltaTime * 2);
+            //_movementVelocity.x -= _movementVelocity.x * (Time.deltaTime * 3);
+            //_movementVelocity.z -= _movementVelocity.z * (Time.deltaTime * 3);
 
-            if (Mathf.Abs(_movementVelocity.x) < 0.01f) _movementVelocity.x = 0f;
-            if (Mathf.Abs(_movementVelocity.z) < 0.01f) _movementVelocity.z = 0f;
-            _externalMomentum.y = 0f;
+            //if (Mathf.Abs(_movementVelocity.x) < 0.01f) _movementVelocity.x = 0f;
+            //if (Mathf.Abs(_movementVelocity.z) < 0.01f) _movementVelocity.z = 0f;
+            //_externalMomentum.y = 0f;
 
-           // _movementVelocity.x = 0;
-           // _movementVelocity.z = 0;
-        }
-
-
-
-        Vector3 finalMovement = (_movementVelocity + _externalMomentum * Time.deltaTime);
+            _movementVelocity.x = 0;
+            _movementVelocity.z = 0;
+        }   
 
         _characterController.Move(_movementVelocity);
     }
@@ -226,7 +223,25 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-  
+    private Vector3 AdjustMovementToSlope(Vector3 inputDir)
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, groundCheckDistance, groundLayer))
+        {
+            float slopeAngle = Vector3.Angle(Vector3.up, hit.normal);
+            if (slopeAngle <= _characterController.slopeLimit)
+            {
+                return Vector3.ProjectOnPlane(inputDir, hit.normal).normalized;
+            }
+            else
+            {
+                return Vector3.zero;
+            }
+        }
+
+        return inputDir;
+    }
+
+
     public void AddForce(Vector3 force)
     {
         _externalMomentum += force;
