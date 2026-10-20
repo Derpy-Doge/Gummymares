@@ -15,6 +15,8 @@ public class Stats : MonoBehaviour
     public float Speed;
     [HideInInspector] public float Passive_Attack; // for enemies only, damage you take when you run into them
 
+    
+
 
     private bool isPlayer;
     public static bool isDead = false;
@@ -52,7 +54,8 @@ public class Stats : MonoBehaviour
 
         if (Health_Current <= 0 && !isPlayer && !expAwarded)
         {
-            // xp reward logic
+            int Xp = GetComponent<enemy>().xp;
+            Leveling_System.instance.AddXp(Xp);
 
             expAwarded = true;
             Destroy(gameObject);

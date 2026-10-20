@@ -5,6 +5,7 @@ public class enemy : MonoBehaviour
     public Transform target;
     public float moveSpeed = 2f;
     public float chaseRange;
+    public int xp;
    
 
     [HideInInspector]public Rigidbody rb;
