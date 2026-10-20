@@ -15,10 +15,13 @@ public class Enemy_Spawn_Hitbox : MonoBehaviour
     public LayerMask attackLayer;
     private enemy enemy;
 
+    public Stats stats;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         enemy = GetComponent<enemy>();
+        stats = GetComponent<Stats>();
     }
 
     // Update is called once per frame
@@ -56,6 +59,14 @@ public class Enemy_Spawn_Hitbox : MonoBehaviour
             foreach (Collider col in hits)
             {
                 Debug.Log(col.gameObject.name);
+
+                if (col.gameObject.GetComponent<Stats>())
+            {
+                Stats Player = col.gameObject.GetComponent<Stats>();
+
+                Player.Health_Current -= stats.Attack_Power;
+                Debug.Log(Player.Health_Current);
+            }
             }
         yield return new WaitForSeconds(attackDuration);
         isAttack = false;
