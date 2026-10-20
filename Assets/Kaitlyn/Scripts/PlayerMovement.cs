@@ -114,8 +114,14 @@ public class PlayerMovement : MonoBehaviour
         {
             if (_canDash)
             {
-                //StartCoroutine(LastInputDash());
-                StartCoroutine(LookDirectionDash());
+                if (_moveInput.magnitude > 0.01f)
+                {
+                    StartCoroutine(InputDash());
+                }
+                else
+                {
+                    StartCoroutine(LookDirectionDash());
+                }             
             }
         };
         #endregion
@@ -137,6 +143,9 @@ public class PlayerMovement : MonoBehaviour
     {
         GameObject camera = _camController.gameObject; //_camController.gameObject;
         _camController._MouseInput = _controls.Player.Look.ReadValue<Vector2>();
+
+
+     
 
         if (_isDashing)
         {
@@ -174,12 +183,13 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         #region drag on exterrnal momentum?        
-        _externalMomentum.x -= _externalMomentum.x * Time.deltaTime;
-        _externalMomentum.z -= _externalMomentum.z * Time.deltaTime;
+        _externalMomentum.x -= _externalMomentum.x * (Time.deltaTime * 3);
+        _externalMomentum.z -= _externalMomentum.z * (Time.deltaTime * 3);
 
         if (Mathf.Abs(_externalMomentum.x) < 0.01f) _externalMomentum.x = 0f;
         if (Mathf.Abs(_externalMomentum.z) < 0.01f) _externalMomentum.z = 0f;
         #endregion
+
 
         if (_moveInput.magnitude > 0.01f)
         {
@@ -199,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
             _movementVelocity.z = 0;
         }   
 
-        _characterController.Move(_movementVelocity);
+        _characterController.Move(_movementVelocity + _externalMomentum * Time.deltaTime);
     }
 
     private void FixedUpdate()
@@ -248,11 +258,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
   
-    private IEnumerator LastInputDash()
+    private IEnumerator InputDash()
     {
-        _isDashing = true;
+          _isDashing = true;
 
-        _dashDirection = LastDirection.normalized;
+        _dashDirection = _moveInput.normalized;
 
         float startTime = Time.time;
         while (Time.time < startTime + dashDuration)
@@ -282,8 +292,8 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
 
-        _isDashing = false;
 
+        _isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
         _canDash = true;
     }
