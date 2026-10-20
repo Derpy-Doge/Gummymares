@@ -3,8 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
+<<<<<<< HEAD
   tags:
   - Floor
+=======
+  tags: []
+>>>>>>> 5fa33c4b40a82be6d746bfec82f31e37f87975cd
   layers:
   - Default
   - TransparentFX
@@ -36,7 +40,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - groun
   - 
   m_SortingLayers:
   - name: Default
