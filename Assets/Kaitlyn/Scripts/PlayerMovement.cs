@@ -260,7 +260,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 _movementVelocity.y += gravity * (gravityMultiplier * .1f) * Time.deltaTime;
             }
-        }
+               }
     }
 
     private Vector3 AdjustMovementToSlope(Vector3 inputDir)
