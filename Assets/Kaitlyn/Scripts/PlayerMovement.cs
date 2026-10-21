@@ -26,6 +26,10 @@ public class PlayerMovement : MonoBehaviour
     private bool _canDash = true;
     private bool _isDashing = false;
     private Vector3 _dashDirection;
+    [Space(7f)]
+    public float jumpForce = 5f;
+    public float airMultiplier = .5f;
+    private bool _canJump = true;
 
     [Header("Physics Settings")]
     [Space(3f)]
@@ -40,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform _groundCheckPoint;
     [SerializeField] private Vector3 _groundCheckSize;
     private bool _isGrounded;
-    private bool _isMovingDownSlope;
+    private bool _movingDownSlope = false;
 
 
     private CharacterController _characterController;
@@ -114,6 +118,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if (_canDash)
             {
+                _canDash = false;
+
                 if (_moveInput.magnitude > 0.01f)
                 {
                     StartCoroutine(InputDash());
@@ -123,6 +129,15 @@ public class PlayerMovement : MonoBehaviour
                     StartCoroutine(LookDirectionDash());
                 }             
             }
+            else
+            {
+                return;
+            }
+        };
+
+        _controls.Player.Jump.performed += ctx =>
+        {
+            _controls.Player.Jump.performed += ctx => Jump();
         };
         #endregion
     }
@@ -154,11 +169,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (_isSprinting)
         {
-            _moveSpeed = sprintSpeed;
+            _moveSpeed = sprintSpeed * .1f;
         }
         else
         {
-            _moveSpeed = walkSpeed;
+            _moveSpeed = walkSpeed * .1f;
         }
 
         Vector3 forward = camera.transform.forward; // directions based off cam position :man_juggling:
@@ -172,6 +187,15 @@ public class PlayerMovement : MonoBehaviour
         adjustedMoveDirection = adjustedMoveDirection.normalized;
         adjustedMoveDirection.y = _movementVelocity.y;
 
+        if (IsMovingDownSlope(moveDirection))
+        {
+            _movingDownSlope = true;
+        }
+        else
+        {
+            _movingDownSlope = false;
+        }
+        
         #region dash direction
 
         if (moveDirection.sqrMagnitude > 0.01f)
@@ -214,11 +238,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _isGrounded = Physics.CheckBox(_groundCheckPoint.position, _groundCheckSize / 2, _groundCheckPoint.rotation, groundLayer);
+        _isGrounded = Physics.CheckBox(_groundCheckPoint.position, _groundCheckSize / 2, _groundCheckPoint.rotation, groundLayer);     
 
-        if (_isGrounded && _movementVelocity.y < 0)
+        if (_movingDownSlope)
         {
-            _movementVelocity.y = -2f;
+            _movementVelocity.y = -.25f;
+        }
+
+        if (_isGrounded && _movementVelocity.y < 0f)
+        {
+            _canJump = true;
+            _movementVelocity.y = -.15f;
         }
         else
         {
@@ -228,7 +258,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                _movementVelocity.y += gravity * gravityMultiplier * Time.deltaTime;
+                _movementVelocity.y += gravity * (gravityMultiplier * .1f) * Time.deltaTime;
             }
         }
     }
@@ -239,7 +269,7 @@ public class PlayerMovement : MonoBehaviour
         {
             float slopeAngle = Vector3.Angle(Vector3.up, hit.normal);
             if (slopeAngle <= _characterController.slopeLimit)
-            {
+            {               
                 return Vector3.ProjectOnPlane(inputDir, hit.normal).normalized;
             }
             else
@@ -251,23 +281,62 @@ public class PlayerMovement : MonoBehaviour
         return inputDir;
     }
 
+    public bool IsMovingDownSlope(Vector3 inputDir)
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, groundCheckDistance, groundLayer))
+        {
+            Vector3 groundNormal = hit.normal;
+
+            if (Mathf.Approximately(groundNormal.y, 1f))
+            {
+                return false;
+            }
+
+            Vector3 downhillDirection = Vector3.ProjectOnPlane(Vector3.down, groundNormal).normalized;
+
+            Vector3 moveDir = new Vector3(inputDir.x, 0, inputDir.z).normalized;
+
+            float dotProduct = Vector3.Dot(moveDir, downhillDirection);
+
+            return dotProduct > 0.05f;
+        }
+        return false;
+    }
+
 
     public void AddForce(Vector3 force)
     {
         _externalMomentum += force;
     }
 
-  
+    private void Jump()
+    {
+        if (!_canJump)
+        {
+            return;
+        }
+        _movementVelocity.y = 0f;
+
+        if (_isGrounded)
+        {
+            _canJump = false;
+            _movementVelocity.y = Mathf.Sqrt((jumpForce * .001f) * -2f * gravity);
+        }
+
+        _movementVelocity.y += gravity * gravityMultiplier * Time.deltaTime;
+    }
+
     private IEnumerator InputDash()
     {
           _isDashing = true;
 
-        _dashDirection = _moveInput.normalized;
+        _dashDirection = LastDirection;
 
         float startTime = Time.time;
         while (Time.time < startTime + dashDuration)
         {
-            _characterController.Move(_dashDirection * dashForce * Time.deltaTime);
+            AddForce(_dashDirection * dashForce);
+            _characterController.Move(_movementVelocity + _externalMomentum * Time.deltaTime);
             yield return null;
         }
 
