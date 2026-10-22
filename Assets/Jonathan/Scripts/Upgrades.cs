@@ -1,16 +1,25 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Upgrades : MonoBehaviour
 {
+    public Button[] upgradeButtons;
+
     private Stats pStats;
     private Leveling_System ls;
+
+    private int attackUpgradeCount = 0;
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         pStats = GameObject.FindAnyObjectByType<PlayerMovement>().GetComponent<Stats>();
         ls = GetComponent<Leveling_System>();
+
+        attackUpgradeCount = 0;
     }
 
     // Update is called once per frame
@@ -19,14 +28,19 @@ public class Upgrades : MonoBehaviour
         
     }
 
-    public void AttackUpgrade()
+    public void AttackUpgrade() //0
     {
-        int upgradecount = 0;
+        
 
-        if (upgradecount <= 3)
+        if (attackUpgradeCount <= 2)
         {
             pStats.Attack_Power += 10;
-            upgradecount++;
+            attackUpgradeCount++;
+
+            if (attackUpgradeCount == 3)
+            {
+                upgradeButtons[0].interactable = false;
+            }
         }
         else
         {

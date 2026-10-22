@@ -10,7 +10,7 @@ public class enemy : MonoBehaviour
 
     [HideInInspector]public Rigidbody rb;
   
-    private bool isGrounded = false;
+    
    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -42,22 +42,8 @@ public class enemy : MonoBehaviour
          
         }
     }
-    private void FixedUpdate()
-    {
+    
+ 
         
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Floor")
-        {
-            isGrounded = true;
-        }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag == "Floor")
-        {
-            isGrounded = false;
-        }
-    }
+    
 }
