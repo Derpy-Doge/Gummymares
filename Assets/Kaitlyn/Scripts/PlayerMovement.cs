@@ -10,13 +10,14 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Settings")]
     [Space(3f)]
     private float _moveSpeed = 5f;
+    private float testr;
 
     public float walkSpeed = 5f;
 
     public float sprintSpeed = 10f;
 
     private bool _isSprinting;
-    private bool _canSprint;
+    private bool _canSprint = true;
 
     [Space(7f)]
     public float dashForce = 30f;
@@ -26,6 +27,10 @@ public class PlayerMovement : MonoBehaviour
     private bool _canDash = true;
     private bool _isDashing = false;
     private Vector3 _dashDirection;
+    [Space(7f)]
+    public float jumpForce = 5f;
+    public float airMultiplier = .5f;
+    private bool _canJump = true;
 
     [Header("Physics Settings")]
     [Space(3f)]
@@ -40,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform _groundCheckPoint;
     [SerializeField] private Vector3 _groundCheckSize;
     private bool _isGrounded;
-    private bool _isMovingDownSlope;
+    private bool _movingDownSlope = false;
 
 
     private CharacterController _characterController;
@@ -79,7 +84,14 @@ public class PlayerMovement : MonoBehaviour
         _controls.Player.Move.performed += ctx =>
         {
             _moveInput = ctx.ReadValue<Vector2>();
-            _moveSpeed = walkSpeed;
+            if (_isSprinting)
+            {
+                _moveSpeed = sprintSpeed;
+            }
+            else
+            {
+                _moveSpeed = walkSpeed;
+            }
             Quaternion camRotation = Quaternion.Euler(0f, _camController.transform.eulerAngles.y, 0f);
             transform.rotation = camRotation;
             _camController._resetXRotation = 0f;
@@ -106,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
         _controls.Player.Sprint.canceled += ctx =>
         {
             _isSprinting = false;
+            _moveSpeed = walkSpeed;
         };
         #endregion
 
@@ -114,9 +127,26 @@ public class PlayerMovement : MonoBehaviour
         {
             if (_canDash)
             {
-                //StartCoroutine(LastInputDash());
-                StartCoroutine(LookDirectionDash());
+                _canDash = false;
+
+                if (_moveInput.magnitude > 0.01f)
+                {
+                    StartCoroutine(InputDash());
+                }
+                else
+                {
+                    StartCoroutine(LookDirectionDash());
+                }             
             }
+            else
+            {
+                return;
+            }
+        };
+
+        _controls.Player.Jump.performed += ctx =>
+        {
+            _controls.Player.Jump.performed += ctx => Jump();
         };
         #endregion
     }
@@ -138,20 +168,26 @@ public class PlayerMovement : MonoBehaviour
         GameObject camera = _camController.gameObject; //_camController.gameObject;
         _camController._MouseInput = _controls.Player.Look.ReadValue<Vector2>();
 
+
+     
+
         if (_isDashing)
         {
             return;
         }
 
+        float speed = _moveSpeed;
+
         if (_isSprinting)
         {
-            _moveSpeed = sprintSpeed;
+            speed = _moveSpeed * .4f;
         }
         else
         {
-            _moveSpeed = walkSpeed;
+            speed = _moveSpeed * .1f;
         }
 
+        testr = speed;
         Vector3 forward = camera.transform.forward; // directions based off cam position :man_juggling:
         Vector3 right = camera.transform.right;
 
@@ -163,6 +199,15 @@ public class PlayerMovement : MonoBehaviour
         adjustedMoveDirection = adjustedMoveDirection.normalized;
         adjustedMoveDirection.y = _movementVelocity.y;
 
+        if (IsMovingDownSlope(moveDirection))
+        {
+            _movingDownSlope = true;
+        }
+        else
+        {
+            _movingDownSlope = false;
+        }
+        
         #region dash direction
 
         if (moveDirection.sqrMagnitude > 0.01f)
@@ -174,17 +219,18 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         #region drag on exterrnal momentum?        
-        _externalMomentum.x -= _externalMomentum.x * Time.deltaTime;
-        _externalMomentum.z -= _externalMomentum.z * Time.deltaTime;
+        _externalMomentum.x -= _externalMomentum.x * (Time.deltaTime * 3);
+        _externalMomentum.z -= _externalMomentum.z * (Time.deltaTime * 3);
 
         if (Mathf.Abs(_externalMomentum.x) < 0.01f) _externalMomentum.x = 0f;
         if (Mathf.Abs(_externalMomentum.z) < 0.01f) _externalMomentum.z = 0f;
         #endregion
 
+
         if (_moveInput.magnitude > 0.01f)
         {
-            _movementVelocity.x = adjustedMoveDirection.x * _moveSpeed;
-            _movementVelocity.z = adjustedMoveDirection.z * _moveSpeed;
+            _movementVelocity.x = adjustedMoveDirection.x * speed;
+            _movementVelocity.z = adjustedMoveDirection.z * speed;
         }
         else
         {
@@ -199,16 +245,22 @@ public class PlayerMovement : MonoBehaviour
             _movementVelocity.z = 0;
         }   
 
-        _characterController.Move(_movementVelocity);
+        _characterController.Move(_movementVelocity + _externalMomentum * Time.deltaTime);
     }
 
     private void FixedUpdate()
     {
-        _isGrounded = Physics.CheckBox(_groundCheckPoint.position, _groundCheckSize / 2, _groundCheckPoint.rotation, groundLayer);
+        _isGrounded = Physics.CheckBox(_groundCheckPoint.position, _groundCheckSize / 2, _groundCheckPoint.rotation, groundLayer);     
 
-        if (_isGrounded && _movementVelocity.y < 0)
+        if (_movingDownSlope)
         {
-            _movementVelocity.y = -2f;
+            _movementVelocity.y = -.25f;
+        }
+
+        if (_isGrounded && _movementVelocity.y < 0f)
+        {
+            _canJump = true;
+            _movementVelocity.y = -.15f;
         }
         else
         {
@@ -218,9 +270,9 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                _movementVelocity.y += gravity * gravityMultiplier * Time.deltaTime;
+                _movementVelocity.y += gravity * (gravityMultiplier * .1f) * Time.deltaTime;
             }
-        }
+               }
     }
 
     private Vector3 AdjustMovementToSlope(Vector3 inputDir)
@@ -229,7 +281,7 @@ public class PlayerMovement : MonoBehaviour
         {
             float slopeAngle = Vector3.Angle(Vector3.up, hit.normal);
             if (slopeAngle <= _characterController.slopeLimit)
-            {
+            {               
                 return Vector3.ProjectOnPlane(inputDir, hit.normal).normalized;
             }
             else
@@ -241,23 +293,62 @@ public class PlayerMovement : MonoBehaviour
         return inputDir;
     }
 
+    public bool IsMovingDownSlope(Vector3 inputDir)
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, groundCheckDistance, groundLayer))
+        {
+            Vector3 groundNormal = hit.normal;
+
+            if (Mathf.Approximately(groundNormal.y, 1f))
+            {
+                return false;
+            }
+
+            Vector3 downhillDirection = Vector3.ProjectOnPlane(Vector3.down, groundNormal).normalized;
+
+            Vector3 moveDir = new Vector3(inputDir.x, 0, inputDir.z).normalized;
+
+            float dotProduct = Vector3.Dot(moveDir, downhillDirection);
+
+            return dotProduct > 0.05f;
+        }
+        return false;
+    }
+
 
     public void AddForce(Vector3 force)
     {
         _externalMomentum += force;
     }
 
-  
-    private IEnumerator LastInputDash()
+    private void Jump()
     {
-        _isDashing = true;
+        if (!_canJump)
+        {
+            return;
+        }
+        _movementVelocity.y = 0f;
 
-        _dashDirection = LastDirection.normalized;
+        if (_isGrounded)
+        {
+            _canJump = false;
+            _movementVelocity.y = Mathf.Sqrt((jumpForce * .001f) * -2f * gravity);
+        }
+
+        _movementVelocity.y += gravity * gravityMultiplier * Time.deltaTime;
+    }
+
+    private IEnumerator InputDash()
+    {
+          _isDashing = true;
+
+        _dashDirection = LastDirection;
 
         float startTime = Time.time;
         while (Time.time < startTime + dashDuration)
         {
-            _characterController.Move(_dashDirection * dashForce * Time.deltaTime);
+            AddForce(_dashDirection * dashForce);
+            _characterController.Move(_movementVelocity + _externalMomentum * Time.deltaTime);
             yield return null;
         }
 
@@ -282,8 +373,8 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
 
-        _isDashing = false;
 
+        _isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
         _canDash = true;
     }
