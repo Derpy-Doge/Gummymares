@@ -1044,7 +1044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   walkSpeed: 1
-  sprintSpeed: 5
+  sprintSpeed: 3
   dashForce: 1
   dashDuration: 0.3
   dashCooldown: 2.5

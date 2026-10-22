@@ -10,13 +10,14 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Settings")]
     [Space(3f)]
     private float _moveSpeed = 5f;
+    private float testr;
 
     public float walkSpeed = 5f;
 
     public float sprintSpeed = 10f;
 
     private bool _isSprinting;
-    private bool _canSprint;
+    private bool _canSprint = true;
 
     [Space(7f)]
     public float dashForce = 30f;
@@ -83,7 +84,14 @@ public class PlayerMovement : MonoBehaviour
         _controls.Player.Move.performed += ctx =>
         {
             _moveInput = ctx.ReadValue<Vector2>();
-            _moveSpeed = walkSpeed;
+            if (_isSprinting)
+            {
+                _moveSpeed = sprintSpeed;
+            }
+            else
+            {
+                _moveSpeed = walkSpeed;
+            }
             Quaternion camRotation = Quaternion.Euler(0f, _camController.transform.eulerAngles.y, 0f);
             transform.rotation = camRotation;
             _camController._resetXRotation = 0f;
@@ -110,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
         _controls.Player.Sprint.canceled += ctx =>
         {
             _isSprinting = false;
+            _moveSpeed = walkSpeed;
         };
         #endregion
 
@@ -167,15 +176,18 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        float speed = _moveSpeed;
+
         if (_isSprinting)
         {
-            _moveSpeed = sprintSpeed * .1f;
+            speed = _moveSpeed * .4f;
         }
         else
         {
-            _moveSpeed = walkSpeed * .1f;
+            speed = _moveSpeed * .1f;
         }
 
+        testr = speed;
         Vector3 forward = camera.transform.forward; // directions based off cam position :man_juggling:
         Vector3 right = camera.transform.right;
 
@@ -217,8 +229,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (_moveInput.magnitude > 0.01f)
         {
-            _movementVelocity.x = adjustedMoveDirection.x * _moveSpeed;
-            _movementVelocity.z = adjustedMoveDirection.z * _moveSpeed;
+            _movementVelocity.x = adjustedMoveDirection.x * speed;
+            _movementVelocity.z = adjustedMoveDirection.z * speed;
         }
         else
         {
