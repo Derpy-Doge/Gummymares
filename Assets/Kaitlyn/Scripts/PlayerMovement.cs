@@ -184,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            speed = _moveSpeed * .1f;
+            speed = _moveSpeed * .01f;
         }
 
         testr = speed;
