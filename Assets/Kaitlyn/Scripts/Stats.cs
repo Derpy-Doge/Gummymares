@@ -42,7 +42,7 @@ public class Stats : MonoBehaviour
         {
            PlayerMovement plyr = GetComponent<PlayerMovement>();
 
-            Speed = plyr.walkSpeed;
+            Speed = plyr.moveSpeed;
         }
     }
 

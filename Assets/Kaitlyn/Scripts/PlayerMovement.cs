@@ -9,12 +9,12 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
     [Space(3f)]
-    private float _moveSpeed = 5f;
+    public float moveSpeed = 1f;
     private float testr;
 
-    public float walkSpeed = 5f;
+    private float _walkSpeed;
 
-    public float sprintSpeed = 10f;
+    private float _sprintSpeed;
 
     private bool _isSprinting;
     private bool _canSprint = true;
@@ -57,8 +57,11 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 LastDirection { get; private set; }
     public Vector3 LookingDirection { get; private set; }
 
+    public Bear5 bur4;
+
     private void Awake()
     {
+
         _characterController = GetComponent<CharacterController>();
         _camController = FindAnyObjectByType<CameraController>();
         _controls = new InputSystem_Actions();
@@ -86,11 +89,11 @@ public class PlayerMovement : MonoBehaviour
             _moveInput = ctx.ReadValue<Vector2>();
             if (_isSprinting)
             {
-                _moveSpeed = sprintSpeed;
+                _sprintSpeed = moveSpeed * .4f;
             }
             else
             {
-                _moveSpeed = walkSpeed;
+                _walkSpeed = moveSpeed * .1f;
             }
             Quaternion camRotation = Quaternion.Euler(0f, _camController.transform.eulerAngles.y, 0f);
             transform.rotation = camRotation;
@@ -112,13 +115,13 @@ public class PlayerMovement : MonoBehaviour
             if (_canSprint)
             {
                 _isSprinting = true;
-                _moveSpeed = sprintSpeed;
+                _sprintSpeed = moveSpeed * .4f;
             }
         };
         _controls.Player.Sprint.canceled += ctx =>
         {
             _isSprinting = false;
-            _moveSpeed = walkSpeed;
+            _walkSpeed = moveSpeed * .1f;
         };
         #endregion
 
@@ -149,6 +152,11 @@ public class PlayerMovement : MonoBehaviour
             _controls.Player.Jump.performed += ctx => Jump();
         };
         #endregion
+
+        _controls.Player.Bur.performed += ctx =>
+        {
+            bur4.StartCoroutine(bur4.Shockwave());
+        };
     }
 
     void OnEnable()
@@ -176,15 +184,15 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        float speed = _moveSpeed;
+        float speed;
 
         if (_isSprinting)
         {
-            speed = _moveSpeed * .4f;
+            speed = _sprintSpeed;
         }
         else
         {
-            speed = _moveSpeed * .01f;
+            speed = _walkSpeed;
         }
 
         testr = speed;
