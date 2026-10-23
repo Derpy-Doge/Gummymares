@@ -10,6 +10,7 @@ public class Upgrades : MonoBehaviour
     private Leveling_System ls;
 
     private int attackUpgradeCount = 0;
+    public int attackUpgradeCost = 0;
 
 
 
@@ -30,22 +31,29 @@ public class Upgrades : MonoBehaviour
 
     public void AttackUpgrade() //0
     {
-        
-
-        if (attackUpgradeCount <= 2)
+        if (ls.SpendSkill(attackUpgradeCost))
         {
-            pStats.Attack_Power += 10;
-            attackUpgradeCount++;
-
-            if (attackUpgradeCount == 3)
+            if (attackUpgradeCount <= 2)
             {
-                upgradeButtons[0].interactable = false;
+                pStats.Attack_Power += 10;
+                attackUpgradeCount++;
+
+                if (attackUpgradeCount == 3)
+                {
+                    upgradeButtons[0].interactable = false;
+                }
+            }
+            else
+            {
+                return;
             }
         }
         else
         {
             return;
         }
+
+       
         
     }
 

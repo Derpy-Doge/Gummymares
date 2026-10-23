@@ -64,15 +64,15 @@ public class Leveling_System : MonoBehaviour
         }
     }
 
-    public void SpendSkill(int cost)
+    public bool SpendSkill(int cost)
     {
         if (skill <= 0)
-        {
-            return;
+        { 
+            return false;
         }
 
         skill -= cost;
-
+        return true;
     }
 
     public void AddXp(int xp)

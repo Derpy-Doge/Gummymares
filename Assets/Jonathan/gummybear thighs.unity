@@ -915,6 +915,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3a5332d931eb34b93eea2cbbbfa56d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Upgrades
+  upgradeButtons:
+  - {fileID: 1102106417}
+  attackUpgradeCost: 1
 --- !u!1 &378134068
 GameObject:
   m_ObjectHideFlags: 0
