@@ -8,12 +8,14 @@ public class Stats : MonoBehaviour
     [HideInInspector]public float Health_Current;
     [Space(7f)]
 
-    public float Attack_Speed;
     public float Attack_Power;
     [Space(4f)]
     public float Defense;
     [Space(4f)]
     public float Speed;
+    [Space(4f)]
+    public float Stealth = 1;
+
     [HideInInspector] public float Passive_Attack; // for enemies only, damage you take when you run into them
 
     public TextMeshProUGUI attackText;

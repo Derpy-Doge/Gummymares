@@ -71,8 +71,15 @@ public class Leveling_System : MonoBehaviour
             return false;
         }
 
-        skill -= cost;
-        return true;
+        if (skill >= cost)
+        {
+            skill -= cost;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void AddXp(int xp)
