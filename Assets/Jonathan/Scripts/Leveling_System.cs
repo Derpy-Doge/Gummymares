@@ -9,8 +9,8 @@ public class Leveling_System : MonoBehaviour
     public int skill;
     
     public float currentXp;
-   
-    private float targetXp;
+
+    [SerializeField] private float targetXp;
 
     public TextMeshProUGUI levelText;
 
@@ -28,7 +28,10 @@ public class Leveling_System : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+        }
     }
 
     // Update is called once per frame
@@ -61,15 +64,22 @@ public class Leveling_System : MonoBehaviour
         }
     }
 
-    public void SpendSkill(int cost)
+    public bool SpendSkill(int cost)
     {
         if (skill <= 0)
-        {
-            return;
+        { 
+            return false;
         }
 
-        skill -= cost;
-
+        if (skill >= cost)
+        {
+            skill -= cost;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void AddXp(int xp)
