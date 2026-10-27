@@ -5,11 +5,10 @@ using System.Threading;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.VFX;
+using static Unity.Cinemachine.IInputAxisOwner.AxisDescriptor;
 
 public class Bear5 : MonoBehaviour
 {
-    public VisualEffect swVFX;
-    [Space(5f)]
     public float meleeRange = 1.5f;
     public LayerMask targetMask;
 
@@ -25,11 +24,15 @@ public class Bear5 : MonoBehaviour
 
     [Space(5f)]
     [Header("Shockwave")]
+    public VisualEffect swVFX;
+    [Space(3f)]
     public float swMaxRadius = 5f;
+    [Space(2f)]
     public float swOuterRadius = 2f;
-    private float innerRadius; 
-    private float swInnerRadius = 1.5f;
     private float outerRadius;
+    [Space(2f)]
+    private float swInnerRadius = 1.5f;
+    private float innerRadius; 
     [Space(3f)]
     public float expansionDuration = 5f;
     public float swHieght = 1f;
@@ -37,8 +40,12 @@ public class Bear5 : MonoBehaviour
     private Vector3 point1;
     public float swForce = 7f;
     public float swDamage = 25;
-    public int crushDamage = 60; // when bear5 lands on the player during shockwave
+
     private List<Collider> alreadyHit;
+    [Space(3f)]
+    public int crushDamage = 60; // when bear5 lands on the player during shockwave
+    public float crushRadius = 1f;
+    public float crushForce = 1f;
     [Space(3f)]
     private bool isExpanding = false;
     private bool canSW = true;
@@ -53,6 +60,8 @@ public class Bear5 : MonoBehaviour
 
     void Start()
     {
+        swVFX.Stop();
+
         swInnerRadius = swOuterRadius * .75f;
 
         point0 = transform.position + Vector3.up * -(swHieght * .5f);
@@ -88,20 +97,42 @@ public class Bear5 : MonoBehaviour
        innerRadius = swInnerRadius;
         outerRadius = swOuterRadius;
 
-        float elapsedTime = 0f;
+        Collider[] boom = Physics.OverlapSphere(transform.position, crushRadius, targetMask);
+        foreach (Collider col in boom)
+        {
+            if (col.gameObject.GetComponent<PlayerMovement>() && col.gameObject.GetComponent<Stats>())
+            {
+                PlayerMovement plyrMov = col.gameObject.GetComponent<PlayerMovement>();
+                Stats plyrSts = col.gameObject.GetComponent<Stats>();
+
+                Vector3 direc = col.transform.position - transform.position;
+
+                plyrMov.AddForce(direc.normalized * crushForce);
+
+                float calcDmg = crushDamage - plyrSts.Defense;
+                plyrSts.Health_Current -= calcDmg;
+            }
+
+            alreadyHit.Add(col);
+        }
+
+
+            float elapsedTime = 0f;
         //insert vfx here
+        swVFX.Play();
 
         while (outerRadius < swMaxRadius)
         {
             elapsedTime += Time.deltaTime;
 
+            swVFX.SetFloat("MajorRadius", outerRadius);
+            
             innerRadius = Mathf.Lerp(swInnerRadius, (swMaxRadius * .75f), elapsedTime / expansionDuration);
             outerRadius = Mathf.Lerp(swOuterRadius, swMaxRadius, elapsedTime / expansionDuration);
 
 
             Collider[] uppies = Physics.OverlapBox(transform.position + (Vector3.up * swHieght), new Vector3(swMaxRadius * .75f, swHieght * .5f, swMaxRadius * .75f), transform.rotation, targetMask);
             Collider[] hits = Physics.OverlapCapsule(point0, point1, outerRadius, targetMask);
-            //Physics.OverlapSphere(transform.position, swOuterRadius, targetMask);
             foreach (Collider col in hits)
             {
                 Vector3 offset = col.transform.position - transform.position;
@@ -124,6 +155,20 @@ public class Bear5 : MonoBehaviour
                                 {
                                     alreadyHit.Add(col);
                                     Debug.Log("AAAAAAAAAA " + col.gameObject.name);
+                                    //hurt logic
+                                     if (col.gameObject.GetComponent<PlayerMovement>() && col.gameObject.GetComponent<Stats>())
+                                     {
+                                        PlayerMovement plyrMov = col.gameObject.GetComponent<PlayerMovement>();
+                                        Stats plyrSts = col.gameObject.GetComponent<Stats>();
+                                        
+                                        Vector3 direc = col.transform.position - transform.position;
+                                        
+                                        plyrMov.AddForce(direc.normalized * swForce);
+                                         
+                                        float calcDmg = swDamage - plyrSts.Defense;
+                                        plyrSts.Health_Current -= calcDmg;
+                                     }
+
                                 }
                             }
                         }
@@ -131,6 +176,19 @@ public class Bear5 : MonoBehaviour
                         {
                             alreadyHit.Add(col);
                             Debug.Log("AAAAAAAAAA " + col.gameObject.name);
+                            //hurt logic
+                            if (col.gameObject.GetComponent<PlayerMovement>() && col.gameObject.GetComponent<Stats>())
+                            {
+                                PlayerMovement plyrMov = col.gameObject.GetComponent<PlayerMovement>();
+                                Stats plyrSts = col.gameObject.GetComponent<Stats>();
+
+                                Vector3 direc = col.transform.position - transform.position;
+
+                                plyrMov.AddForce(direc.normalized * swForce);
+
+                                float calcDmg = swDamage - plyrSts.Defense;
+                                plyrSts.Health_Current -= calcDmg;
+                            }
                         }
                     }                   
                 }
@@ -143,27 +201,10 @@ public class Bear5 : MonoBehaviour
             yield return null;
         }
 
-
-        //Collider[] hits = Physics.OverlapSphere(transform.position, swMaxRadius, targetMask);
-        //foreach (Collider col in hits)
-        //{
-        //    if (col.gameObject.GetComponent<PlayerMovement>() && col.gameObject.GetComponent<Stats>())
-        //    {
-        //        PlayerMovement plyrMov = col.gameObject.GetComponent<PlayerMovement>();
-        //        Stats plyrSts = col.gameObject.GetComponent<Stats>();
-
-        //        Vector3 direc = col.transform.position - transform.position;
-
-        //        plyrMov.AddForce(direc.normalized * swForce);
-
-        //        float calcDmg = swDamage - plyrSts.Defense;
-        //        plyrSts.Health_Current -= calcDmg;
-        //    }
-        //}
-
         isSW = false;
 
         Debug.Log("gurt");
+        swVFX.Stop();
         alreadyHit.Clear();
         yield return new WaitForSeconds(swCooldown);
 
@@ -188,5 +229,9 @@ public class Bear5 : MonoBehaviour
         Gizmos.color = Color.orange;
 
         Gizmos.DrawCube(transform.position + (Vector3.up * swHieght), new Vector3(swMaxRadius * 1.5f, swHieght, swMaxRadius * 1.5f));
+
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawSphere(transform.position, crushRadius);
     }
 }

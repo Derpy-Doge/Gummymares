@@ -483,7 +483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab74386b31d99964d9c64ba84b4cc634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bear5
-  swVFX: {fileID: 1919338635}
   meleeRange: 1.5
   targetMask:
     serializedVersion: 2
@@ -492,6 +491,7 @@ MonoBehaviour:
   pForce: 1
   pDamage: 35
   pCooldown: 5
+  swVFX: {fileID: 1919338635}
   swMaxRadius: 10
   swOuterRadius: 2
   expansionDuration: 7
@@ -499,6 +499,8 @@ MonoBehaviour:
   swForce: 7
   swDamage: 25
   crushDamage: 60
+  crushRadius: 2
+  crushForce: 4
   swCooldown: 5
   xp: 1000
 --- !u!1 &478878839
@@ -1020,8 +1022,8 @@ MonoBehaviour:
   verticalMouseSensitivity: 55
   horizontalMouseSensitivity: 55
   horizontalDeadzoneAngle: 80
-  verticalMinAngle: 56
-  verticalMaxAngle: 90
+  verticalMinAngle: 50
+  verticalMaxAngle: 60
   _resetXRotation: 0
   firstPersonCam: {fileID: 1437829949}
   thirdPersonCam: {fileID: 2108129058}
@@ -1777,7 +1779,7 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 3.38
+      - m_Value: 0.78
         m_Name: MajorRadius
         m_Overridden: 1
     m_Vector2f:
@@ -1790,7 +1792,7 @@ VisualEffect:
       m_Array: []
     m_Int:
       m_Array:
-      - m_Value: 500
+      - m_Value: 5000
         m_Name: SpawnRate
         m_Overridden: 1
       - m_Value: 83
@@ -1815,7 +1817,7 @@ Transform:
   m_GameObject: {fileID: 1919338633}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.437, y: -0.391, z: 4.55}
+  m_LocalPosition: {x: 1.50443, y: -1.04, z: 10.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

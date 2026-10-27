@@ -60,7 +60,7 @@ public class Stats : MonoBehaviour
         if (Health_Current <= 0 && isPlayer && !isDead)
         {
             isDead = true;
-            //SceneManager.LoadScene("Game-Over");
+            Debug.Log("YOURE DEAD CUH");
         }
 
 
