@@ -64,7 +64,7 @@ public class Enemy_Spawn_Hitbox : MonoBehaviour
             {
                 Stats Player = col.gameObject.GetComponent<Stats>();
 
-                Player.Health_Current -= stats.Attack_Power;
+                Player.Health_Current -= (stats.Attack_Power - Player.Defense);
                 Debug.Log(Player.Health_Current);
             }
             }

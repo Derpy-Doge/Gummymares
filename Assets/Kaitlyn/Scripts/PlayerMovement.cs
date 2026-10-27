@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 LastDirection { get; private set; }
     public Vector3 LookingDirection { get; private set; }
 
-    public Bear5 bur4;
+    public Bear5 bur4; // this is for dev testing
 
     private void Awake()
     {
