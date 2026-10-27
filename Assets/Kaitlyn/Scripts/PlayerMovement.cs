@@ -27,6 +27,18 @@ public class PlayerMovement : MonoBehaviour
     private bool _isDashing = false;
     private Vector3 _dashDirection;
 
+    [Space(7f)]
+    [Header("Combat Settings")]
+    [Space(3f)]
+
+    public LayerMask targetLayer;
+    private bool canAttack = true;
+    private bool isAttacking = false;
+
+    public float attackRadius;
+    public float attackRange;
+    public float coolDown;
+
     [Header("Physics Settings")]
     [Space(3f)]
     public float gravity = -9.81f;
@@ -119,6 +131,14 @@ public class PlayerMovement : MonoBehaviour
             }
         };
         #endregion
+
+        _controls.Player.Attack.performed += ctx =>
+        {
+            if (canAttack)
+            {
+                StartCoroutine(Attack());
+            }
+        };
     }
 
     void OnEnable()
@@ -145,11 +165,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (_isSprinting)
         {
-            _moveSpeed = sprintSpeed;
+            _moveSpeed = sprintSpeed * 0.05f;
+            Debug.Log("RAN");
         }
         else
         {
-            _moveSpeed = walkSpeed;
+            _moveSpeed = walkSpeed * 0.01f;
+            //Debug.Log("slow af");
         }
 
         Vector3 forward = camera.transform.forward; // directions based off cam position :man_juggling:
@@ -241,6 +263,34 @@ public class PlayerMovement : MonoBehaviour
         return inputDir;
     }
 
+    public IEnumerator Attack()
+    {
+        canAttack = false;
+        isAttacking = true;
+
+        Collider[] Hits = Physics.OverlapSphere(transform.position + (LookingDirection*attackRange), attackRadius, targetLayer);
+        foreach(Collider col in Hits)
+        {
+            if (col.gameObject.GetComponent<enemy>() && col.gameObject.GetComponent<Stats>())
+            {
+                Stats Enemy = col.gameObject.GetComponent<Stats>();
+                Stats player = GetComponent<Stats>();
+
+                float calcdamage = player.Attack_Power - Enemy.Defense;
+                Enemy.Health_Current -= calcdamage;
+
+                Debug.Log("Owie " + col.gameObject.name);
+            } 
+            else
+            {
+                Debug.Log("Bingus");
+            }
+        }
+
+        isAttacking = false;
+        yield return new WaitForSeconds(coolDown);
+        canAttack = true;
+    }
 
     public void AddForce(Vector3 force)
     {
@@ -307,5 +357,8 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + LastDirection * 2f);
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(transform.position, transform.position + LookingDirection * 2);
+
+        Gizmos.color = Color.goldenRod;
+        Gizmos.DrawWireSphere(transform.position + (LookingDirection * attackRange), attackRadius);
     }
 }
