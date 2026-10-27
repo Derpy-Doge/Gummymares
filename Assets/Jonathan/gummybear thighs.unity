@@ -601,7 +601,7 @@ Transform:
   m_GameObject: {fileID: 291715458}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 19.8, y: 5.4, z: -1.2}
+  m_LocalPosition: {x: 19.8, y: 5.4, z: 0.6}
   m_LocalScale: {x: 62.15035, y: 4.99633, z: 0.77903}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -640,12 +640,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2543983f5c0f9a499726dd543519f1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  walkSpeed: 0.1
+  walkSpeed: 2
   sprintSpeed: 5
   dashForce: 7
   dashDuration: 1
   dashCooldown: 2.5
-  gravity: -9.81
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 32768
+  attackRadius: 1.5
+  attackRange: 1.2
+  coolDown: 0
+  gravity: -20
   gravityMultiplier: 1.5
   groundCheckDistance: 6
   groundLayer:
@@ -692,7 +698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Stats
   Health_Max: 100
   Health_Current: 0
-  Attack_Power: 10
+  Attack_Power: 40
   Defense: 0
   Speed: 0
   Stealth: 1
@@ -2199,7 +2205,7 @@ GameObject:
   - component: {fileID: 1204379312}
   - component: {fileID: 1204379314}
   - component: {fileID: 1204379315}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2219,9 +2225,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemy
   target: {fileID: 313433797}
-  moveSpeed: 300
+  moveSpeed: 2500
   chaseRange: 10
-  xp: 0
+  xp: 100
   rb: {fileID: 0}
 --- !u!136 &1204379308
 CapsuleCollider:
@@ -2312,7 +2318,7 @@ Transform:
   m_GameObject: {fileID: 1204379306}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.72, y: 5.22, z: 2.85}
+  m_LocalPosition: {x: 0.72, y: 5.22, z: 8.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2363,7 +2369,7 @@ MonoBehaviour:
   attackLayer:
     serializedVersion: 2
     m_Bits: 64
-  stats: {fileID: 0}
+  stats: {fileID: 1204379315}
 --- !u!114 &1204379315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2376,9 +2382,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86318d559bb01a94799fdc493ceb81fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stats
-  Health_Max: 10
+  Health_Max: 40
   Health_Current: 0
-  Attack_Power: 50
+  Attack_Power: 15
   Defense: 0
   Speed: 0
   Stealth: 1
@@ -2617,6 +2623,7 @@ MonoBehaviour:
   horizontalDeadzoneAngle: 80
   verticalMinAngle: 56
   verticalMaxAngle: 90
+  isLocked: 1
   _resetXRotation: 0
   firstPersonCam: {fileID: 1085698064}
   thirdPersonCam: {fileID: 0}
@@ -2834,7 +2841,7 @@ Transform:
   m_GameObject: {fileID: 1635587312}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.9, y: 5.4, z: 17.3}
+  m_LocalPosition: {x: 1.8, y: 5.4, z: 30.59}
   m_LocalScale: {x: 37.95441, y: 4.99633, z: 0.77903}
   m_ConstrainProportionsScale: 0
   m_Children: []

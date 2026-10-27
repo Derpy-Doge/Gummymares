@@ -32,6 +32,18 @@ public class PlayerMovement : MonoBehaviour
     public float airMultiplier = .5f;
     private bool _canJump = true;
 
+    [Space(7f)]
+    [Header("Combat Settings")]
+    [Space(3f)]
+
+    public LayerMask targetLayer;
+    private bool canAttack = true;
+    private bool isAttacking = false;
+
+    public float attackRadius;
+    public float attackRange;
+    public float coolDown;
+
     [Header("Physics Settings")]
     [Space(3f)]
     public float gravity = -9.81f;
@@ -153,9 +165,18 @@ public class PlayerMovement : MonoBehaviour
         };
         #endregion
 
+        _controls.Player.Attack.performed += ctx =>
+        {
+            if (canAttack)
+            {
+                StartCoroutine(Attack());
+            }
+        };
+
+
         _controls.Player.Bur.performed += ctx =>
         {
-            bur4.StartCoroutine(bur4.Shockwave());
+            bur4.StartCoroutine(bur4.Shockwave());     
         };
     }
 
@@ -300,7 +321,34 @@ public class PlayerMovement : MonoBehaviour
 
         return inputDir;
     }
+    public IEnumerator Attack()
+    {
+        canAttack = false;
+        isAttacking = true;
 
+        Collider[] Hits = Physics.OverlapSphere(transform.position + (LookingDirection*attackRange), attackRadius, targetLayer);
+        foreach(Collider col in Hits)
+        {
+            if (col.gameObject.GetComponent<enemy>() && col.gameObject.GetComponent<Stats>())
+            {
+                Stats Enemy = col.gameObject.GetComponent<Stats>();
+                Stats player = GetComponent<Stats>();
+
+                float calcdamage = player.Attack_Power - Enemy.Defense;
+                Enemy.Health_Current -= calcdamage;
+
+                Debug.Log("Owie " + col.gameObject.name);
+            } 
+            else
+            {
+                Debug.Log("Bingus");
+            }
+        }
+
+        isAttacking = false;
+        yield return new WaitForSeconds(coolDown);
+        canAttack = true;
+    }
     public bool IsMovingDownSlope(Vector3 inputDir)
     {
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, groundCheckDistance, groundLayer))
@@ -322,7 +370,6 @@ public class PlayerMovement : MonoBehaviour
         }
         return false;
     }
-
 
     public void AddForce(Vector3 force)
     {
@@ -406,5 +453,8 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + LastDirection * 2f);
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(transform.position, transform.position + LookingDirection * 2);
+
+        Gizmos.color = Color.goldenRod;
+        Gizmos.DrawWireSphere(transform.position + (LookingDirection * attackRange), attackRadius);
     }
 }

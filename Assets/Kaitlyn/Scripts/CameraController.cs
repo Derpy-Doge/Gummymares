@@ -19,6 +19,8 @@ public class CameraController : MonoBehaviour
     [Tooltip("How far up you can look.")]
     public float verticalMaxAngle = 90f;
 
+    public bool isLocked = true;
+
 
     private float _yRotation = 0f; // left and right
     private float _xRotation = 0f; // up and down
@@ -34,15 +36,28 @@ public class CameraController : MonoBehaviour
     void Start()
     {
 
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
        
-        //Cursor.visible = false;
+        Cursor.visible = false;
 
         _xRotation = playerBody.eulerAngles.y;
     }
 
     void Update()
     {
+        if (isLocked)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+
+            Cursor.visible = true;
+        }
+
         if (playerBody == null || cameraTransform == null) return;
 
         float mouseX = _MouseInput.x * horizontalMouseSensitivity * Time.deltaTime;
