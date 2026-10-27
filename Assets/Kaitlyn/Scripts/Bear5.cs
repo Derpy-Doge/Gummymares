@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.VFX;
 using static Unity.Cinemachine.IInputAxisOwner.AxisDescriptor;
 
 public class Bear5 : MonoBehaviour
 {
+    public Animator animator;
+    [Space(5f)]
     public float meleeRange = 1.5f;
     public LayerMask targetMask;
 
@@ -25,6 +28,10 @@ public class Bear5 : MonoBehaviour
     [Space(5f)]
     [Header("Shockwave")]
     public VisualEffect swVFX;
+    public DecalProjector swWarning;
+    [Space(3f)]
+    public AnimationClip up;
+    public AnimationClip down;
     [Space(3f)]
     public float swMaxRadius = 5f;
     [Space(2f)]
@@ -61,6 +68,7 @@ public class Bear5 : MonoBehaviour
     void Start()
     {
         swVFX.Stop();
+        swWarning.gameObject.SetActive(false);
 
         swInnerRadius = swOuterRadius * .75f;
 
@@ -94,8 +102,28 @@ public class Bear5 : MonoBehaviour
         canSW = false;
         isSW = true;
 
-       innerRadius = swInnerRadius;
+        float elapsedTime = 0f;
+
+        innerRadius = swInnerRadius;
         outerRadius = swOuterRadius;
+
+        Vector3 plyrPos = GameObject.FindAnyObjectByType<PlayerMovement>().transform.position;
+
+        // yield return WaitForAnimEnd(up);
+        animator.Play(up.name);
+        while (transform.position.x != plyrPos.x)
+        {
+            elapsedTime += Time.deltaTime;
+
+            float xPos = transform.position.x;
+            xPos = Mathf.Lerp(xPos, plyrPos.x, elapsedTime / 2.5f);
+            transform.position = new Vector3 (xPos, transform.position.y, transform.position.z);
+            yield return null;
+        }
+
+        swWarning.gameObject.SetActive(false);
+        //yield return WaitForAnimEnd(down);
+        animator.Play(down.name);
 
         Collider[] boom = Physics.OverlapSphere(transform.position, crushRadius, targetMask);
         foreach (Collider col in boom)
@@ -117,7 +145,7 @@ public class Bear5 : MonoBehaviour
         }
 
 
-            float elapsedTime = 0f;
+            elapsedTime = 0f;
         //insert vfx here
         swVFX.Play();
 
@@ -210,6 +238,39 @@ public class Bear5 : MonoBehaviour
 
         canSW = true;
         Debug.Log("e");
+    }
+
+    public IEnumerator WaitForAnimEnd(AnimationClip clip) //gen js stole ts hope it works :man_juggling:
+    {
+        float timeout;
+
+        if (animator == null)
+            yield break;
+
+        timeout = .5f;
+
+        animator.Play(clip.name);
+        animator.Update(0f);
+
+        int hash = Animator.StringToHash(clip.name);
+
+        // wait for anim to start (or transition to it) up to timeout
+
+        animator.CrossFade(clip.name, 0f, 0);
+
+        //wait for anim to finish
+        float timer = 0f;
+        while (timer < timeout)
+        {
+            yield return new WaitForEndOfFrame();
+            //var current = player.animator.GetCurrentAnimatorStateInfo(0);
+
+            //if (current.shortNameHash != hash && !player.animator.IsInTransition(0))
+            //    break;
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
     }
 
     private void OnDrawGizmos()
