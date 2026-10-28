@@ -1,0 +1,1098 @@
+fileFormatVersion: 2
+guid: 9cf1c209a0ebf6c45ae61e3281fe2272
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5390
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9da2446b45b3e6249a003cb42c91b7df
+      internalID: 2024449510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_1
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 5390
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9de5e8e93315cfa4f8a108aa8db83cc9
+      internalID: 2099936933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_2
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 5390
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d68a1d0ab4a10144ab6c8545f868ee05
+      internalID: 1857492207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_3
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 5390
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab4c20d2f948b934893110a92bd19c7c
+      internalID: 1888406511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_4
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 5390
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad887e2583e67534ab36a895e1b65c29
+      internalID: 215020198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_5
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 5390
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 652d8bc075b6e3c4280a43c607b737db
+      internalID: -901800197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4312
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3799ce14ed45be34ca8f0d66d6491253
+      internalID: 1377059816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_8
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 4312
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35958632bb172d64fa0478012b72f4de
+      internalID: -824038747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_9
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 4312
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e9393fddfbf05c438435b1042249a39
+      internalID: 1701086937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_10
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 4312
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f74009733d937e4c9bb37717326caa0
+      internalID: -1163523773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_11
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 4312
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c4e2fca0174f0b4ea337645f36b8964
+      internalID: -1753788056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_12
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 4312
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cab9d3594b459e14084cae1c2f4d8b60
+      internalID: 73531450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_13
+      rect:
+        serializedVersion: 2
+        x: 8640
+        y: 4312
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bc5794b53350dc4790c3256824aa845
+      internalID: 1065910122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3234
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd0b3871d52885344bea4afd851d3f25
+      internalID: -867976915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_15
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 3234
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37b3bb67657b8134ea1205b16ca92d3a
+      internalID: 1775097473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_16
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 3234
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4653d9e66483c41488f80d335ddb0fa5
+      internalID: -409351441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_17
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 3234
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49bb5ec806524cd41ae6ae24466146b0
+      internalID: -1000930219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_18
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 3234
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f9d59aabfd194c42973107ad27b749a
+      internalID: -1180382143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_19
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 3234
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee016b7535f676d49a2dd5c13af25d08
+      internalID: 348935211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_20
+      rect:
+        serializedVersion: 2
+        x: 8640
+        y: 3234
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc5166ad54c32f24fabb355498acc27d
+      internalID: 1458655908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2156
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47f5133bc411ebf488142edd89a79b84
+      internalID: 338390168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_22
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 2156
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ea692fd6a4fdbb49a88e573aa56dcb0
+      internalID: -913248308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_23
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 2156
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9573f2878cbf60d4db068a77cfef2b91
+      internalID: -1170888776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_24
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 2156
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00c0fde7b3af76046b6aaa0cd8411b5e
+      internalID: -570094024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_25
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 2156
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfd5d3a7f55c06144898f8c66fa4dd2a
+      internalID: -1477568588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_26
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 2156
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 080e685bef7c3dc4fb9c7a4c2828121a
+      internalID: 1916565255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_27
+      rect:
+        serializedVersion: 2
+        x: 8640
+        y: 2156
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcfd20fb0eea52a42bfcad6227f90a47
+      internalID: 1780229481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1078
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c61255a7a5c47c04cb1316845b2d6774
+      internalID: 909325471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_29
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 1078
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 803a3d114ac72774482edb87d7af6e01
+      internalID: -2142904955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_30
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 1078
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a5df4a966451e648992448e51c65ae5
+      internalID: 677558270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_31
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 1078
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 831d7c27ad2dc784e9196d25b0f146e6
+      internalID: -1707743553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_32
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 1078
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ecab55ca7d9c37438d68d5171bee2d4
+      internalID: 1113240586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_33
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 1078
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d091af155d22c1445be9e4a697d5a7cf
+      internalID: -934574116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_34
+      rect:
+        serializedVersion: 2
+        x: 8640
+        y: 1078
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d22b771fabf7f9458e78eda4b988033
+      internalID: 1399120832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 494b8d84003ee50489377d3f71078eee
+      internalID: -1501786837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_36
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99f0c37c15f909c4f9ac9a4a51d5ee53
+      internalID: -1834171062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_37
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 0
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41a353d310564fa46bf8ad6e2324e961
+      internalID: 1383698105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_38
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 0
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e643069aabbade4a999b62c083951f4
+      internalID: 743581879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_39
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 0
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f9881dc3b9e4444fb73a2fc2715cca9
+      internalID: 1625726547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_40
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 0
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6fcd88739650cb4db0e0ece351901e1
+      internalID: 1930280735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_41
+      rect:
+        serializedVersion: 2
+        x: 8640
+        y: 0
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dcf38b52c4f0aa428680519c39d5cd3
+      internalID: -2144711638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresIdle_sprite_6
+      rect:
+        serializedVersion: 2
+        x: 8640
+        y: 5390
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d103ec3547461544b3fb85f44f98501
+      internalID: -868300186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: f6e60af99c7a2584dbc023a6a9c77efc
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":7.0,"y":6.0},"gridSpriteSize":{"x":1440.0,"y":1078.0},"gridSpriteOffset":{"x":0.0,"y":12.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      gummymaresIdle_sprite_0: 2024449510
+      gummymaresIdle_sprite_1: 2099936933
+      gummymaresIdle_sprite_10: -1163523773
+      gummymaresIdle_sprite_11: -1753788056
+      gummymaresIdle_sprite_12: 73531450
+      gummymaresIdle_sprite_13: 1065910122
+      gummymaresIdle_sprite_14: -867976915
+      gummymaresIdle_sprite_15: 1775097473
+      gummymaresIdle_sprite_16: -409351441
+      gummymaresIdle_sprite_17: -1000930219
+      gummymaresIdle_sprite_18: -1180382143
+      gummymaresIdle_sprite_19: 348935211
+      gummymaresIdle_sprite_2: 1857492207
+      gummymaresIdle_sprite_20: 1458655908
+      gummymaresIdle_sprite_21: 338390168
+      gummymaresIdle_sprite_22: -913248308
+      gummymaresIdle_sprite_23: -1170888776
+      gummymaresIdle_sprite_24: -570094024
+      gummymaresIdle_sprite_25: -1477568588
+      gummymaresIdle_sprite_26: 1916565255
+      gummymaresIdle_sprite_27: 1780229481
+      gummymaresIdle_sprite_28: 909325471
+      gummymaresIdle_sprite_29: -2142904955
+      gummymaresIdle_sprite_3: 1888406511
+      gummymaresIdle_sprite_30: 677558270
+      gummymaresIdle_sprite_31: -1707743553
+      gummymaresIdle_sprite_32: 1113240586
+      gummymaresIdle_sprite_33: -934574116
+      gummymaresIdle_sprite_34: 1399120832
+      gummymaresIdle_sprite_35: -1501786837
+      gummymaresIdle_sprite_36: -1834171062
+      gummymaresIdle_sprite_37: 1383698105
+      gummymaresIdle_sprite_38: 743581879
+      gummymaresIdle_sprite_39: 1625726547
+      gummymaresIdle_sprite_4: 215020198
+      gummymaresIdle_sprite_40: 1930280735
+      gummymaresIdle_sprite_41: -2144711638
+      gummymaresIdle_sprite_5: -901800197
+      gummymaresIdle_sprite_6: -868300186
+      gummymaresIdle_sprite_7: 1377059816
+      gummymaresIdle_sprite_8: -824038747
+      gummymaresIdle_sprite_9: 1701086937
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
