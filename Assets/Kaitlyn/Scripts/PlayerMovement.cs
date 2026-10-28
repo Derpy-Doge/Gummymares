@@ -207,6 +207,15 @@ public class PlayerMovement : MonoBehaviour
         GameObject camera = _camController.gameObject; //_camController.gameObject;
         _camController._MouseInput = _controls.Player.Look.ReadValue<Vector2>();
 
+        if (time_manager.instance.isDay)
+        {
+            _controls.Player.Disable();
+        }
+        else
+        {
+            _controls.Player.Enable();
+        }
+
 
      
 
