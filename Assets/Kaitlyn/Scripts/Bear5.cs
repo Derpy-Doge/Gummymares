@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -12,10 +13,16 @@ public class Bear5 : MonoBehaviour
 {
     public Animator animator;
     [Space(5f)]
+    [Header("Movement")]
+    public float moveSpeed;
+    public Transform target;
+    private Rigidbody rb;
+
+    [Space(5f)]
     public float meleeRange = 1.5f;
     public LayerMask targetMask;
 
-    [Space(5f)]
+    [Space(6f)]
     [Header("Punch")]
     public float pRadius = 1f;
     public float pForce = 1f;
@@ -25,7 +32,7 @@ public class Bear5 : MonoBehaviour
     private bool isPunching = false;
     public float pCooldown = 5f;
 
-    [Space(5f)]
+    [Space(6f)]
     [Header("Shockwave")]
     public VisualEffect swVFX;
     public DecalProjector swWarning;
@@ -67,6 +74,8 @@ public class Bear5 : MonoBehaviour
 
     void Start()
     {
+        target = GameObject.FindAnyObjectByType<PlayerMovement>().transform;
+
         swVFX.Stop();
         swWarning.gameObject.SetActive(false);
 
@@ -80,17 +89,85 @@ public class Bear5 : MonoBehaviour
 
     
     void Update()
-    {
-        Collider[] hits = Physics.OverlapSphere(transform.position, meleeRange, targetMask);
+    {        
+            Collider[] hits = Physics.OverlapSphere(transform.position + (Vector3.forward*1), meleeRange, targetMask);
         foreach (Collider col in hits)
         {
             if (col.gameObject.GetComponent<PlayerMovement>() && col.gameObject.GetComponent<Stats>())
             {
-                //punch coroutine
+                if (canPunch)
+                {
+                    StartCoroutine(Punch());
+                    return;
+                }
+                else
+                {
+                    rb.linearVelocity = Vector3.zero;
+                    return;
+                }
             }
         }
+
+        if(hits.Length == 0 && canSW)
+        {
+            StartCoroutine(Shockwave());
+            rb.linearVelocity = Vector3.zero;
+            return;
+        }
+
+        if(isSW || isPunching)
+        {
+            rb.linearVelocity = Vector3.zero;
+        }
+
+        Vector3 direction = (target.position - transform.position).normalized;
+        direction.y = 0;
+
+        if (hits.Length == 0 && !canSW)
+        {
+            rb.linearVelocity = new Vector3(direction.x, 0, direction.z) * moveSpeed * Time.deltaTime;
+        }
+        else
+        {
+            rb.linearVelocity = Vector3.zero;
+        }
+
+
     }
 
+
+    public IEnumerator Punch()
+    {
+        canPunch = false;
+        isPunching = true;
+
+        yield return new WaitForSeconds(.1f);
+        AudioManager.instance.PlayPlayerSfx(AudioManager.instance.playerAttack);
+        Collider[] Hits = Physics.OverlapSphere(transform.position , pRadius, targetMask);
+        foreach (Collider col in Hits)
+        {
+            if (col.gameObject.GetComponent<PlayerMovement>() && col.gameObject.GetComponent<Stats>())
+            {
+                PlayerMovement plyrMov = col.gameObject.GetComponent<PlayerMovement>();
+                Stats plyrSts = col.gameObject.GetComponent<Stats>();
+
+                Vector3 direc = col.transform.position - transform.position;
+
+                plyrMov.AddForce(direc.normalized * pForce);
+
+                float calcDmg = pDamage - plyrSts.Defense;
+                plyrSts.Health_Current -= calcDmg;
+            }
+            else
+            {
+                
+            }
+        }
+
+        isPunching = false;
+        yield return new WaitForSeconds(pCooldown);
+        canPunch = true;
+    }
 
     public IEnumerator Shockwave()
     {
@@ -109,21 +186,23 @@ public class Bear5 : MonoBehaviour
 
         Vector3 plyrPos = GameObject.FindAnyObjectByType<PlayerMovement>().transform.position;
 
-        // yield return WaitForAnimEnd(up);
-        animator.Play(up.name);
-        while (transform.position.x != plyrPos.x)
+        swWarning.gameObject.SetActive(true);
+        yield return WaitForAnimEnd(up);
+        while ((transform.parent.position.x != plyrPos.x) && (transform.parent.position.z != plyrPos.z))
         {
             elapsedTime += Time.deltaTime;
 
-            float xPos = transform.position.x;
-            xPos = Mathf.Lerp(xPos, plyrPos.x, elapsedTime / 2.5f);
-            transform.position = new Vector3 (xPos, transform.position.y, transform.position.z);
+            float xPos = transform.parent.position.x;
+            float zPos = transform.parent.position.z;
+
+            xPos = Mathf.Lerp(xPos, plyrPos.x, elapsedTime / 2f);
+            zPos = Mathf.Lerp(zPos, plyrPos.z, elapsedTime / 2f);
+
+            transform.parent.position = new Vector3 (xPos, transform.parent.position.y, zPos);
             yield return null;
         }
 
-        swWarning.gameObject.SetActive(false);
-        //yield return WaitForAnimEnd(down);
-        animator.Play(down.name);
+        yield return WaitForAnimEnd(down);;
 
         Collider[] boom = Physics.OverlapSphere(transform.position, crushRadius, targetMask);
         foreach (Collider col in boom)
@@ -139,6 +218,8 @@ public class Bear5 : MonoBehaviour
 
                 float calcDmg = crushDamage - plyrSts.Defense;
                 plyrSts.Health_Current -= calcDmg;
+
+                Debug.Log("groot");
             }
 
             alreadyHit.Add(col);
@@ -233,6 +314,7 @@ public class Bear5 : MonoBehaviour
 
         Debug.Log("gurt");
         swVFX.Stop();
+        swWarning.gameObject.SetActive(false);
         alreadyHit.Clear();
         yield return new WaitForSeconds(swCooldown);
 

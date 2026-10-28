@@ -1,0 +1,1029 @@
+fileFormatVersion: 2
+guid: 12b8d96559a8a254f9ed9c1b1eb82c2f
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5390
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fae2118ba7bf5464683dba913b51c851
+      internalID: 1174261588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_1
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 5390
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57b805ee042d6714f8769c4065676338
+      internalID: -966684516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_2
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 5390
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb97f5c41a928cc4abd5983a7bbb3f3d
+      internalID: 1829580539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_3
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 5390
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 937a440cdd61f15498edb7cc361818ed
+      internalID: 1957660030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_4
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 5390
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27ef0f6549e267c429d8539f57736f8e
+      internalID: -478043855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_5
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 5390
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1eb97b7332b5e44c98c6120e5488f54
+      internalID: -1122238569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_6
+      rect:
+        serializedVersion: 2
+        x: 8640
+        y: 5390
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b1169e88b0219344b86f5e560eea375
+      internalID: -1981526837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4312
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dab4b39e4bd033f4e83dabf6eaaece6f
+      internalID: 2103350469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_8
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 4312
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6f8d42ca6e220e4d90cbd2d5c4fdb4c
+      internalID: 280944098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_9
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 4312
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae218bd29ecea2f4780e20ea39c63344
+      internalID: -928240773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_10
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 4312
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a937d077edc410142bcfd0856d25e065
+      internalID: 2026493056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_11
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 4312
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eedd425037107c4cbffaac397a13701
+      internalID: -1781980800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_12
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 4312
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90db3a2399400484fb90a96272fae233
+      internalID: 1723849024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_13
+      rect:
+        serializedVersion: 2
+        x: 8640
+        y: 4312
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ea54e276a4836d469a6be7af6c60cdd
+      internalID: -273928244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3234
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 099984a8e658f434c8cadc0562f56823
+      internalID: -1451037820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_15
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 3234
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 262fa5f25035270469f05497f8d08aa8
+      internalID: -1251657554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_16
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 3234
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccf5ec9f09ca4044791a56fd53e7fd04
+      internalID: 214076154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_17
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 3234
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5d69305c1a15444eaa2931c4990babf
+      internalID: 1429026397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_18
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 3234
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6375e24d20115b04d891fbd1a0a1740b
+      internalID: 2126384775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_19
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 3234
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e50ebc3a9050354bb73be6a30fec9dc
+      internalID: -183023716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_20
+      rect:
+        serializedVersion: 2
+        x: 8640
+        y: 3234
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd00b82874c6e9140af4d0231ca3699f
+      internalID: -1238685105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2156
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a05cec8171ba6074fb2c550b1c37669c
+      internalID: 1103958551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_22
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 2156
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4a57864dab8a6b4da10b9baf821d9b6
+      internalID: 2072666297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_23
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 2156
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: daa4cff338407bf498f89c5d26b2a34d
+      internalID: 1775285677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_24
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 2156
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb5e52bc126c19a4c914e166ddbf1dec
+      internalID: 1982872646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_25
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 2156
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21a655430d685c74a96c3e239f31a397
+      internalID: -1123388239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_26
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 2156
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c950308ba7b3f8d45a87decd6c69d2b4
+      internalID: -371447111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_27
+      rect:
+        serializedVersion: 2
+        x: 8640
+        y: 2156
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a54621d408c1b6241b50f99ca6e296ff
+      internalID: -1145207179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1078
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fc36b2ed4ae9f94da3bfdbe7c8e1e5f
+      internalID: -1930405402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_29
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 1078
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8048640afce250344880111ea95d978b
+      internalID: 262422889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_30
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 1078
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f34ef159b480cf94eaeefa0c1c3f3909
+      internalID: 252210559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_31
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 1078
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f93cd50e3880a6d4b8b98d7429351c93
+      internalID: -1435302771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_32
+      rect:
+        serializedVersion: 2
+        x: 5760
+        y: 1078
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98296e28b98e91843aef6245530f250b
+      internalID: 1574462852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_33
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 1078
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7aba72d55dda6c4abc971ab245ddb32
+      internalID: 1582779915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_34
+      rect:
+        serializedVersion: 2
+        x: 8640
+        y: 1078
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85f453d36de731141954c8044cb102a8
+      internalID: 350025439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cffb4c501ff4624daa4850f1987ec8d
+      internalID: 1817546027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_36
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b991154135b555842a70f90ce8d9b1c1
+      internalID: 863887016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_37
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 0
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccf23ac4deaad9e4ca325874b0ebadab
+      internalID: -694805994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gummymaresAttack_sprite_38
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 0
+        width: 1440
+        height: 1078
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca8682a6a0ee8f847bb182e8b6f772a8
+      internalID: 661951006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 6e87533eb9edd8f43b9d1e7a3e421f59
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":7.0,"y":6.0},"gridSpriteSize":{"x":1440.0,"y":1078.0},"gridSpriteOffset":{"x":0.0,"y":12.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      gummymaresAttack_sprite_0: 1174261588
+      gummymaresAttack_sprite_1: -966684516
+      gummymaresAttack_sprite_10: 2026493056
+      gummymaresAttack_sprite_11: -1781980800
+      gummymaresAttack_sprite_12: 1723849024
+      gummymaresAttack_sprite_13: -273928244
+      gummymaresAttack_sprite_14: -1451037820
+      gummymaresAttack_sprite_15: -1251657554
+      gummymaresAttack_sprite_16: 214076154
+      gummymaresAttack_sprite_17: 1429026397
+      gummymaresAttack_sprite_18: 2126384775
+      gummymaresAttack_sprite_19: -183023716
+      gummymaresAttack_sprite_2: 1829580539
+      gummymaresAttack_sprite_20: -1238685105
+      gummymaresAttack_sprite_21: 1103958551
+      gummymaresAttack_sprite_22: 2072666297
+      gummymaresAttack_sprite_23: 1775285677
+      gummymaresAttack_sprite_24: 1982872646
+      gummymaresAttack_sprite_25: -1123388239
+      gummymaresAttack_sprite_26: -371447111
+      gummymaresAttack_sprite_27: -1145207179
+      gummymaresAttack_sprite_28: -1930405402
+      gummymaresAttack_sprite_29: 262422889
+      gummymaresAttack_sprite_3: 1957660030
+      gummymaresAttack_sprite_30: 252210559
+      gummymaresAttack_sprite_31: -1435302771
+      gummymaresAttack_sprite_32: 1574462852
+      gummymaresAttack_sprite_33: 1582779915
+      gummymaresAttack_sprite_34: 350025439
+      gummymaresAttack_sprite_35: 1817546027
+      gummymaresAttack_sprite_36: 863887016
+      gummymaresAttack_sprite_37: -694805994
+      gummymaresAttack_sprite_38: 661951006
+      gummymaresAttack_sprite_4: -478043855
+      gummymaresAttack_sprite_5: -1122238569
+      gummymaresAttack_sprite_6: -1981526837
+      gummymaresAttack_sprite_7: 2103350469
+      gummymaresAttack_sprite_8: 280944098
+      gummymaresAttack_sprite_9: -928240773
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

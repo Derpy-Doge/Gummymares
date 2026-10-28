@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Floor
+  - Hand
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Enemy
   - 
   - 
-  - 
+  - obstruction
   - grun
   - 
   - 

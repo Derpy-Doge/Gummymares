@@ -17,6 +17,8 @@ public class Enemy_Spawn_Hitbox : MonoBehaviour
 
     public Stats stats;
 
+    public AudioSource enemySfxSource;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -42,7 +44,7 @@ public class Enemy_Spawn_Hitbox : MonoBehaviour
             }
             else
             {
-                //Debug.Log("my father left");
+                
             }
         }
     }
@@ -54,26 +56,30 @@ public class Enemy_Spawn_Hitbox : MonoBehaviour
         isAttack = true;
         canAttack = false;
         
-            Collider[] hits = Physics.OverlapSphere(transform.position, attackRadius, attackLayer);
+        if(enemySfxSource != null)
+        {
+            enemySfxSource.clip = AudioManager.instance.enemyAttack;
+            enemySfxSource.Play();
+        }
 
-            foreach (Collider col in hits)
-            {
-                Debug.Log(col.gameObject.name);
+        Collider[] hits = Physics.OverlapSphere(transform.position, attackRadius, attackLayer);
 
-                if (col.gameObject.GetComponent<Stats>())
+        foreach (Collider col in hits)
+        {
+            Debug.Log(col.gameObject.name);
+
+            if (col.gameObject.GetComponent<Stats>())
             {
                 Stats Player = col.gameObject.GetComponent<Stats>();
 
                 Player.Health_Current -= (stats.Attack_Power - Player.Defense);
                 Debug.Log(Player.Health_Current);
             }
-            }
+        }
         yield return new WaitForSeconds(attackDuration);
         isAttack = false;
         yield return new WaitForSeconds(attackCooldown);
-        canAttack = true;
-
-        
+        canAttack = true;       
     }
 
     private void OnDrawGizmos()

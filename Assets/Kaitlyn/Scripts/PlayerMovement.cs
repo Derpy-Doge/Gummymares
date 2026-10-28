@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -44,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
     public float attackRange;
     public float coolDown;
 
+    public AnimationClip attackClip;
+
     [Header("Physics Settings")]
     [Space(3f)]
     public float gravity = -9.81f;
@@ -59,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _isGrounded;
     private bool _movingDownSlope = false;
 
-
+    private Animator _animator;
     private CharacterController _characterController;
     private CameraController _camController;
     private InputSystem_Actions _controls;
@@ -73,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-
+        _animator = GameObject.FindGameObjectWithTag("Hand").GetComponent<Animator>();
         _characterController = GetComponent<CharacterController>();
         _camController = FindAnyObjectByType<CameraController>();
         _controls = new InputSystem_Actions();
@@ -112,11 +115,14 @@ public class PlayerMovement : MonoBehaviour
             _camController._resetXRotation = 0f;
             _camController.SetDefaultRotation(); //jesus that was harder to figure out than i thought itd be
             _camController.horizontalDeadzoneAngle = 0f; //so when you look around while walking youll automatically rotate
+
+            AudioManager.instance.PlayPlayerSfx(AudioManager.instance.playerWalk);
         };
         _controls.Player.Move.canceled += ctx =>
         {
             _moveInput = Vector2.zero;
             _camController.horizontalDeadzoneAngle = deadzoneAngle; //reset the deadzone angle when you stop moving
+            AudioManager.instance.playerSfxSource.Stop();
         };
         #endregion
 
@@ -128,12 +134,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 _isSprinting = true;
                 _sprintSpeed = moveSpeed * .4f;
+
+                AudioManager.instance.PlayPlayerSfx(AudioManager.instance.playerWalk);
             }
         };
         _controls.Player.Sprint.canceled += ctx =>
         {
             _isSprinting = false;
             _walkSpeed = moveSpeed * .1f;
+
+            AudioManager.instance.playerSfxSource.Stop();
         };
         #endregion
 
@@ -301,7 +311,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 _movementVelocity.y += gravity * (gravityMultiplier * .1f) * Time.deltaTime;
             }
-               }
+        }
     }
 
     private Vector3 AdjustMovementToSlope(Vector3 inputDir)
@@ -326,6 +336,9 @@ public class PlayerMovement : MonoBehaviour
         canAttack = false;
         isAttacking = true;
 
+        StartCoroutine(WaitForAnimEnd(attackClip));
+        yield return new WaitForSeconds(.1f);
+        AudioManager.instance.PlayPlayerSfx(AudioManager.instance.playerAttack);
         Collider[] Hits = Physics.OverlapSphere(transform.position + (LookingDirection*attackRange), attackRadius, targetLayer);
         foreach(Collider col in Hits)
         {
@@ -349,6 +362,35 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(coolDown);
         canAttack = true;
     }
+
+    public IEnumerator WaitForAnimEnd(AnimationClip clip )
+    {
+        float timeout;
+
+        if (_animator == null)
+            yield break;
+
+        timeout = 1;
+
+        _animator.SetTrigger(clip.name);
+        _animator.Update(0f);
+
+        int hash = Animator.StringToHash(clip.name);
+
+        _animator.CrossFade(clip.name, 0f, 0);
+
+        //wait for anim to finish
+        float timer = 0f;
+        while (timer < timeout)
+        {
+            yield return new WaitForEndOfFrame();
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        _animator.Play("Idle");
+    }
+
     public bool IsMovingDownSlope(Vector3 inputDir)
     {
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, groundCheckDistance, groundLayer))
