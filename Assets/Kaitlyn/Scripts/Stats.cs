@@ -68,6 +68,9 @@ public class Stats : MonoBehaviour
             {
                 int Xp = GetComponent<enemy>().xp;
                 Leveling_System.instance.AddXp(Xp);
+
+                time_manager.instance.bearsKilled++;
+
             }
 
             expAwarded = true;
