@@ -2246,8 +2246,6 @@ MonoBehaviour:
   Stealth: 1
   Passive_Attack: 0
   attackText: {fileID: 0}
-=======
->>>>>>> 419157eb716596341f02cbb16537d1527c52cc5e
 --- !u!1 &1839449575
 GameObject:
   m_ObjectHideFlags: 0
