@@ -2097,7 +2097,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4972488349017404989, guid: 40a620a460d57224e9041fb4dd1cc9ba, type: 3}
   m_PrefabInstance: {fileID: 4657254354567694065}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
   m_GameObject: {fileID: 1673786351}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
