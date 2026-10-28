@@ -338,7 +338,8 @@ public class PlayerMovement : MonoBehaviour
 
         StartCoroutine(WaitForAnimEnd(attackClip));
         yield return new WaitForSeconds(.1f);
-        AudioManager.instance.PlayPlayerSfx(AudioManager.instance.playerAttack);
+        if (AudioManager.instance != null)
+            AudioManager.instance.PlayPlayerSfx(AudioManager.instance.playerAttack);
         Collider[] Hits = Physics.OverlapSphere(transform.position + (LookingDirection*attackRange), attackRadius, targetLayer);
         foreach(Collider col in Hits)
         {
