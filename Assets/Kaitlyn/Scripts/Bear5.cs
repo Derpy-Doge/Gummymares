@@ -256,7 +256,7 @@ public class Bear5 : MonoBehaviour
                         {
                             for (int i = 0; i < alreadyHit.Count; i++)
                             {
-                                if (col.gameObject.name == alreadyHit[i].gameObject.name) // if been hit dont run hit logic
+                                if (col.gameObject.name == alreadyHit[i].gameObject.name || col.gameObject.GetComponent<PlayerMovement>()._isDashing) // if been hit dont run hit logic
                                 {
                                     continue;
                                 }

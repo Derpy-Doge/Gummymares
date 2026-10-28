@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public float dashCooldown = 2.5f;
 
     private bool _canDash = true;
-    private bool _isDashing = false;
+    public bool _isDashing = false;
     private Vector3 _dashDirection;
     [Space(7f)]
     public float jumpForce = 5f;
