@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private float _sprintSpeed;
 
     private bool _isSprinting;
-    private bool _canSprint = true;
+    private bool _canSprint = false;
 
     [Space(7f)]
     public float dashForce = 30f;
@@ -29,9 +29,9 @@ public class PlayerMovement : MonoBehaviour
     public bool _isDashing = false;
     private Vector3 _dashDirection;
     [Space(7f)]
-    public float jumpForce = 5f;
-    public float airMultiplier = .5f;
-    private bool _canJump = true;
+    //public float jumpForce = 5f;
+    //public float airMultiplier = .5f;
+    //private bool _canJump = true;
 
     [Space(7f)]
     [Header("Combat Settings")]
@@ -169,10 +169,10 @@ public class PlayerMovement : MonoBehaviour
             }
         };
 
-        _controls.Player.Jump.performed += ctx =>
-        {
-            _controls.Player.Jump.performed += ctx => Jump();
-        };
+        //_controls.Player.Jump.performed += ctx =>
+        //{
+        //    _controls.Player.Jump.performed += ctx => Jump();
+        //};
         #endregion
 
         _controls.Player.Attack.performed += ctx =>
@@ -206,6 +206,15 @@ public class PlayerMovement : MonoBehaviour
     {
         GameObject camera = _camController.gameObject; //_camController.gameObject;
         _camController._MouseInput = _controls.Player.Look.ReadValue<Vector2>();
+
+        if (time_manager.instance.isDay)
+        {
+            _controls.Player.Disable();
+        }
+        else
+        {
+            _controls.Player.Enable();
+        }
 
 
      
@@ -298,7 +307,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (_isGrounded && _movementVelocity.y < 0f)
         {
-            _canJump = true;
+            //_canJump = true;
             _movementVelocity.y = -.15f;
         }
         else
@@ -338,7 +347,8 @@ public class PlayerMovement : MonoBehaviour
 
         StartCoroutine(WaitForAnimEnd(attackClip));
         yield return new WaitForSeconds(.1f);
-        AudioManager.instance.PlayPlayerSfx(AudioManager.instance.playerAttack);
+        if (AudioManager.instance != null)
+            AudioManager.instance.PlayPlayerSfx(AudioManager.instance.playerAttack);
         Collider[] Hits = Physics.OverlapSphere(transform.position + (LookingDirection*attackRange), attackRadius, targetLayer);
         foreach(Collider col in Hits)
         {
@@ -418,22 +428,22 @@ public class PlayerMovement : MonoBehaviour
         _externalMomentum += force;
     }
 
-    private void Jump()
-    {
-        if (!_canJump)
-        {
-            return;
-        }
-        _movementVelocity.y = 0f;
+    //private void Jump()
+    //{
+    //    if (!_canJump)
+    //    {
+    //        return;
+    //    }
+    //    _movementVelocity.y = 0f;
 
-        if (_isGrounded)
-        {
-            _canJump = false;
-            _movementVelocity.y = Mathf.Sqrt((jumpForce * .001f) * -2f * gravity);
-        }
+    //    if (_isGrounded)
+    //    {
+    //        _canJump = false;
+    //        _movementVelocity.y = Mathf.Sqrt((jumpForce * .001f) * -2f * gravity);
+    //    }
 
-        _movementVelocity.y += gravity * gravityMultiplier * Time.deltaTime;
-    }
+    //    _movementVelocity.y += gravity * gravityMultiplier * Time.deltaTime;
+    //}
 
     private IEnumerator InputDash()
     {
