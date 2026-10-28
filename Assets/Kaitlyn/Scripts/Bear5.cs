@@ -74,6 +74,7 @@ public class Bear5 : MonoBehaviour
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         target = GameObject.FindAnyObjectByType<PlayerMovement>().transform;
 
         swVFX.Stop();

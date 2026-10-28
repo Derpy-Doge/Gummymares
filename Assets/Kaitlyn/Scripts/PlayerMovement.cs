@@ -72,8 +72,6 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 LastDirection { get; private set; }
     public Vector3 LookingDirection { get; private set; }
 
-    public Bear5 bur4; // this is for dev testing
-
     private void Awake()
     {
         _animator = GameObject.FindGameObjectWithTag("Hand").GetComponent<Animator>();
@@ -181,12 +179,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 StartCoroutine(Attack());
             }
-        };
-
-
-        _controls.Player.Bur.performed += ctx =>
-        {
-            bur4.StartCoroutine(bur4.Shockwave());     
         };
     }
 
@@ -369,7 +361,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         isAttacking = false;
+
+        yield return !AudioManager.instance.playerSfxSource.isPlaying;
+        if (_controls.Player.Move.IsInProgress() && !AudioManager.instance.playerSfxSource.isPlaying)
+        {
+            AudioManager.instance.PlayPlayerSfx(AudioManager.instance.playerWalk);
+        }
+
         yield return new WaitForSeconds(coolDown);
+       
         canAttack = true;
     }
 

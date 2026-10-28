@@ -10,12 +10,12 @@ public class AudioManager : MonoBehaviour
     //public AudioSource enemySfxSource;
     //we gon want enemies to have their own personal source for directional audio right 
     public AudioClip enemyMovement;
-    public AudioClip enemyChase;
     public AudioClip enemyAttack;
     [Space(3f)]
     public AudioSource playerSfxSource;
     public AudioClip playerWalk;
     public AudioClip playerAttack;
+    public AudioClip playerHurt;
     [Space(3f)]
     public AudioSource environmentSfxSource;
 
@@ -58,12 +58,6 @@ public class AudioManager : MonoBehaviour
 
             musicSource.Play();
         }
-    }
-
-    public void PlayEnemySfx(AudioClip clip)
-    {
-        //enemySfxSource.clip = clip;
-        //enemySfxSource.Play();
     }
 
     public void PlayPlayerSfx(AudioClip clip)
