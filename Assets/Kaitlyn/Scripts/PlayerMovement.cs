@@ -454,7 +454,7 @@ public class PlayerMovement : MonoBehaviour
         float startTime = Time.time;
         while (Time.time < startTime + dashDuration)
         {
-            AddForce(_dashDirection * dashForce);
+            AddForce(_dashDirection * (dashForce * 0.1f));
             _characterController.Move(_movementVelocity + _externalMomentum * Time.deltaTime);
             yield return null;
         }
