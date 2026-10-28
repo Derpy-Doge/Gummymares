@@ -209,7 +209,7 @@
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Cube",
-                "value": "{\"m_Value\":{\"x\":18.466028213500978,\"y\":1.6617662906646729,\"z\":11.194158554077149}}"
+                "value": "{\"m_Value\":{\"x\":-2.492234230041504,\"y\":5.474617958068848,\"z\":0.712127685546875}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -219,7 +219,7 @@
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Door",
-                "value": "{\"m_Value\":{\"x\":-11.759408950805664,\"y\":11.381916046142579,\"z\":2.7344746589660646}}"
+                "value": "{\"m_Value\":{\"x\":7.566839218139648,\"y\":7.328800678253174,\"z\":-1.3047256469726563}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
