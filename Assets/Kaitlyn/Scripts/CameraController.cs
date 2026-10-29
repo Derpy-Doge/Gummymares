@@ -35,6 +35,8 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
 
         Cursor.lockState = CursorLockMode.Locked;
        

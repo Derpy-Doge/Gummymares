@@ -483,12 +483,12 @@ public class PlayerMovement : MonoBehaviour
         _canDash = false;
         _isDashing = true;
 
-        _dashDirection = LookingDirection.normalized;
+        _dashDirection = new Vector3(LookingDirection.x, 0, LookingDirection.y).normalized;
 
         float startTime = Time.time;
         while (Time.time < startTime + dashDuration)
         {
-            AddForce(_dashDirection * dashForce);
+            AddForce(_dashDirection * (dashForce * 0.1f));
             _characterController.Move(_movementVelocity + _externalMomentum * Time.deltaTime);
             yield return null;
         }
