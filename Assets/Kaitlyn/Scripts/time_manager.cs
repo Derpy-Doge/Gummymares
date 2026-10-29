@@ -17,6 +17,7 @@ public class time_manager : MonoBehaviour
     public Transform playerSpawnPoint;
 
     public TextMeshProUGUI timerText;
+    public TextMeshProUGUI skillText;
 
     private CameraController cameraController;
 
@@ -51,6 +52,7 @@ public class time_manager : MonoBehaviour
             cameraController.isLocked = false;
 
             dayUI.SetActive(true);
+            skillText.text = "Skill Points: " + Leveling_System.instance.skill;
             nightUI.SetActive(false);
         }
         else
@@ -74,6 +76,7 @@ public class time_manager : MonoBehaviour
             GameObject player = GameObject.FindAnyObjectByType<PlayerMovement>().gameObject;
 
             player.transform.position = playerSpawnPoint.position;
+            player.GetComponent<Stats>().Health_Current = player.GetComponent<Stats>().Health_Max;
         }
 
         if (totalBearsKilled == totalBearThreshold && !isDay)

@@ -124,7 +124,7 @@ public class Bear5 : MonoBehaviour
 
             Leveling_System.instance.AddXp(xp);
 
-            Destroy(transform.parent);
+            Destroy(transform.parent.gameObject);
         }
 
             Collider[] hits = Physics.OverlapSphere(transform.position + Vector3.forward , meleeRange, targetMask);

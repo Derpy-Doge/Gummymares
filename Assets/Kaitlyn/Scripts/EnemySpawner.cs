@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
     {
         foreach (EnemySpawnPoint esp in spawners)
         {
-            if (!time_manager.instance.isDay)
+            if (!time_manager.instance.isDay && esp.canSpawn)
             {
                 StartCoroutine(SpawnEnemies(esp));
             }
@@ -59,5 +59,5 @@ public class EnemySpawnPoint
     public GameObject enemy;
     public List<Transform> spawnPoints;
     public float respawnTime;
-    public bool canSpawn;
+    public bool canSpawn = true;
 }

@@ -38,7 +38,9 @@ public class enemy : MonoBehaviour
     {
         if (time_manager.instance.isDay)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
+
+            Debug.Log("icicle");
         }
 
         Stats player = FindAnyObjectByType<PlayerMovement>().gameObject.GetComponent<Stats>();

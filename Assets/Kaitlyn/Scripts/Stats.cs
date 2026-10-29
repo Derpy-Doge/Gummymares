@@ -82,7 +82,9 @@ public class Stats : MonoBehaviour
         if (Health_Current <= 0 && isPlayer && !isDead)
         {
             isDead = true;
-            Debug.Log("YOURE DEAD CUH");
+            CameraController camcontroller = FindAnyObjectByType<CameraController>();
+            camcontroller.isLocked = false;
+            SceneManager.LoadScene("Kaitlyn White");
         }
 
         if (isPlayer)

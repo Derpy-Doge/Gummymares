@@ -375,13 +375,13 @@ public class PlayerMovement : MonoBehaviour
 
         isAttacking = false;
 
-        //yield return !AudioManager.instance.playerSfxSource.isPlaying;
-        //if (_controls.Player.Move.IsInProgress() && !AudioManager.instance.playerSfxSource.isPlaying && hasattackaudio == true)
-        //{
-        //    AudioManager.instance.PlayPlayerSfx(AudioManager.instance.playerWalk);
-        //}
+        yield return !AudioManager.instance.playerSfxSource.isPlaying;
+        if (_controls.Player.Move.IsInProgress() && !AudioManager.instance.playerSfxSource.isPlaying && hasattackaudio == true)
+        {
+            AudioManager.instance.PlayPlayerSfx(AudioManager.instance.playerWalk);
+        }
 
-        //yield return new WaitForSeconds(coolDown);
+        yield return new WaitForSeconds(coolDown);
        
         canAttack = true;
     }
