@@ -75,7 +75,7 @@ public class enemy : MonoBehaviour
                     //stupid ahh smug emoji
                 }
 
-                    rb.linearVelocity = new Vector3(direction.x, 0, direction.z) * moveSpeed * Time.deltaTime;
+                    rb.linearVelocity = new Vector3(direction.x, 0, direction.z) * (moveSpeed * 250f) * Time.deltaTime;
             }
             else
             {

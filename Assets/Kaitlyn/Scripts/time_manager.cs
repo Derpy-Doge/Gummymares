@@ -25,6 +25,12 @@ public class time_manager : MonoBehaviour
 
     public static time_manager instance;
 
+    private void Awake()
+    {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+    }
+
     void Start()
     {
         if (instance == null)
