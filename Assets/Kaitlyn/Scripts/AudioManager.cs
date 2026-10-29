@@ -18,6 +18,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip playerHurt;
     [Space(3f)]
     public AudioSource environmentSfxSource;
+    [Space(3f)]
+    public AudioClip Bear5Walk;
+    public AudioClip Bear5Punch;
+    public AudioClip Bear5SW;
 
     public static AudioManager instance;
 

@@ -20,6 +20,10 @@ public class Bear5 : MonoBehaviour
 
     [Space(5f)]
     public float meleeRange = 1.5f;
+    public float defense = 10f;
+    [Space(3f)]
+    public float stun = 10f;
+    private bool isStunned = false;
     public LayerMask targetMask;
 
     [Space(6f)]
@@ -30,6 +34,7 @@ public class Bear5 : MonoBehaviour
     [Space(3f)]
     private bool canPunch = true;
     private bool isPunching = false;
+    private int pCount = 0;
     public float pCooldown = 5f;
 
     [Space(6f)]
@@ -67,14 +72,19 @@ public class Bear5 : MonoBehaviour
     public float swCooldown = 20f;
 
     [Space(5f)]
-    public int xp = 1000;
+    public float Health_Max;
+    [HideInInspector] public float Health_Current;
+    public int xp = 2500;
+
+    public AudioSource bear5Audio;
 
     public static bool defeated = false;
 
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        bear5Audio = GetComponent<AudioSource>();
+        rb = GetComponentInParent<Rigidbody>();
         target = GameObject.FindAnyObjectByType<PlayerMovement>().transform;
 
         swVFX.Stop();
@@ -86,12 +96,30 @@ public class Bear5 : MonoBehaviour
         point1 = transform.position + Vector3.up * (swHieght * .5f);
 
         alreadyHit = new List<Collider>();
+
+        Health_Current = Health_Max;
     }
 
     
     void Update()
-    {        
-            Collider[] hits = Physics.OverlapSphere(transform.position + (Vector3.forward*1), meleeRange, targetMask);
+    {
+        if(bear5Audio.clip == AudioManager.instance.Bear5Walk)
+        {
+            bear5Audio.loop = true;
+        }
+        else
+        {
+            bear5Audio.loop = false;
+        }
+
+        if (Health_Current <= 0)
+        {
+            defeated = true;
+
+            Leveling_System.instance.AddXp(xp);
+        }
+
+            Collider[] hits = Physics.OverlapSphere(transform.position + Vector3.forward , meleeRange, targetMask);
         foreach (Collider col in hits)
         {
             if (col.gameObject.GetComponent<PlayerMovement>() && col.gameObject.GetComponent<Stats>())
@@ -109,7 +137,24 @@ public class Bear5 : MonoBehaviour
             }
         }
 
-        if(hits.Length == 0 && canSW)
+
+        if (pCount == 4)
+        {
+            StartCoroutine(Stun());
+            pCount = 0;
+        }
+
+        if (isStunned)
+        {
+            rb.isKinematic = true;
+        }
+        else
+        {
+            rb.isKinematic = false;
+        }
+
+
+        if (hits.Length == 0 && canSW)
         {
             StartCoroutine(Shockwave());
             rb.linearVelocity = Vector3.zero;
@@ -121,12 +166,26 @@ public class Bear5 : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
         }
 
-        Vector3 direction = (target.position - transform.position).normalized;
+        Vector3 direction = (target.position - transform.parent.transform.position).normalized;
         direction.y = 0;
 
         if (hits.Length == 0 && !canSW)
         {
             rb.linearVelocity = new Vector3(direction.x, 0, direction.z) * moveSpeed * Time.deltaTime;
+
+            if (!canSW && !isSW && !isPunching && !isStunned)
+            {
+                if (bear5Audio.clip == AudioManager.instance.Bear5Walk && bear5Audio.isPlaying)
+                {
+
+                }
+                else
+                {
+                    bear5Audio.clip = AudioManager.instance.Bear5Walk;
+                    bear5Audio.Play();
+                }
+
+            }
         }
         else
         {
@@ -137,18 +196,29 @@ public class Bear5 : MonoBehaviour
     }
 
 
+    public IEnumerator Stun()
+    {
+        isStunned = true;
+
+        yield return new WaitForSeconds(stun);
+
+        isStunned = false;
+    }
+
     public IEnumerator Punch()
     {
         canPunch = false;
         isPunching = true;
 
         yield return new WaitForSeconds(.1f);
-        AudioManager.instance.PlayPlayerSfx(AudioManager.instance.playerAttack);
-        Collider[] Hits = Physics.OverlapSphere(transform.position , pRadius, targetMask);
+        bear5Audio.clip = AudioManager.instance.Bear5Punch;
+        bear5Audio.Play();
+        Collider[] Hits = Physics.OverlapSphere(transform.position + (Vector3.forward * 1.5f), pRadius, targetMask);
         foreach (Collider col in Hits)
         {
             if (col.gameObject.GetComponent<PlayerMovement>() && col.gameObject.GetComponent<Stats>())
             {
+                AudioManager.instance.PlayPlayerSfx(AudioManager.instance.playerHurt);
                 PlayerMovement plyrMov = col.gameObject.GetComponent<PlayerMovement>();
                 Stats plyrSts = col.gameObject.GetComponent<Stats>();
 
@@ -166,6 +236,7 @@ public class Bear5 : MonoBehaviour
         }
 
         isPunching = false;
+        pCount++;
         yield return new WaitForSeconds(pCooldown);
         canPunch = true;
     }
@@ -203,6 +274,8 @@ public class Bear5 : MonoBehaviour
             yield return null;
         }
 
+        bear5Audio.clip = AudioManager.instance.Bear5SW;
+        bear5Audio.Play();
         yield return WaitForAnimEnd(down);;
 
         Collider[] boom = Physics.OverlapSphere(transform.position, crushRadius, targetMask);
@@ -377,5 +450,14 @@ public class Bear5 : MonoBehaviour
         Gizmos.color = Color.red;
 
         Gizmos.DrawSphere(transform.position, crushRadius);
+
+
+        Gizmos.color = Color.firebrick;
+
+        Gizmos.DrawSphere(transform.position + Vector3.forward, meleeRange);
+
+        Gizmos.color = Color.darkOrchid;
+
+        Gizmos.DrawSphere(transform.position + (Vector3.forward * 1.5f), pRadius);
     }
 }

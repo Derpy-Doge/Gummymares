@@ -353,7 +353,15 @@ public class PlayerMovement : MonoBehaviour
                 Enemy.Health_Current -= calcdamage;
 
                 Debug.Log("Owie " + col.gameObject.name);
-            } 
+            }
+            else if (col.gameObject.GetComponent<Bear5>())
+            {
+                Bear5 bear5 = col.gameObject.GetComponent<Bear5>();
+                Stats player = GetComponent<Stats>();
+
+                float calcdamage = player.Attack_Power - bear5.defense;
+                bear5.Health_Current -= calcdamage;
+            }
             else
             {
                 Debug.Log("Bingus");

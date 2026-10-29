@@ -368,8 +368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 437598599}
   - component: {fileID: 437598600}
-  - component: {fileID: 437598601}
-  - component: {fileID: 437598602}
+  - component: {fileID: 437598603}
   m_Layer: 0
   m_Name: totally bear5
   m_TagString: Untagged
@@ -408,13 +407,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bear5
   animator: {fileID: 1965216136}
-  moveSpeed: 0
+  moveSpeed: 2000
   target: {fileID: 0}
-  meleeRange: 1.5
+  meleeRange: 2.25
+  defense: 10
+  stun: 10
   targetMask:
     serializedVersion: 2
     m_Bits: 64
-  pRadius: 1
+  pRadius: 2
   pForce: 1
   pDamage: 30
   pCooldown: 5
@@ -432,55 +433,107 @@ MonoBehaviour:
   crushRadius: 2
   crushForce: 2
   swCooldown: 20
-  xp: 1000
---- !u!54 &437598601
-Rigidbody:
+  Health_Max: 500
+  Health_Current: 0
+  xp: 2500
+  bear5Audio: {fileID: 437598603}
+--- !u!82 &437598603
+AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437598595}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.674
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
     serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
     serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!65 &437598602
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 437598595}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
     serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
     serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 2.86, y: 4.7, z: 0.71}
-  m_Center: {x: 0, y: 1.77, z: 0}
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &478878839
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,6 +1744,9 @@ MonoBehaviour:
   playerAttack: {fileID: 8300000, guid: 9e89ee037fba5e44b89c498e5a09c1e5, type: 3}
   playerHurt: {fileID: 8300000, guid: 50fb8a70eecc6224fb0ec5c824dcc938, type: 3}
   environmentSfxSource: {fileID: 987716112}
+  Bear5Walk: {fileID: 8300000, guid: 8d1314c5fb6990c48a6ef7b6b7d5bab6, type: 3}
+  Bear5Punch: {fileID: 8300000, guid: d372d9d1f1f3f3942a8c96eb335ef1e8, type: 3}
+  Bear5SW: {fileID: 8300000, guid: dab6eaaf88d16504bb5dce91d7dbfd34, type: 3}
 --- !u!114 &987716116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2691,6 +2747,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1965216137}
   - component: {fileID: 1965216136}
+  - component: {fileID: 1965216138}
   m_Layer: 0
   m_Name: bear5 Parent
   m_TagString: Untagged
@@ -2736,6 +2793,33 @@ Transform:
   - {fileID: 437598599}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1965216138
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965216135}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &2055599926
 GameObject:
   m_ObjectHideFlags: 0
@@ -2748,7 +2832,7 @@ GameObject:
   - component: {fileID: 2055599930}
   - component: {fileID: 2055599929}
   - component: {fileID: 2055599928}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: bear5 sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2802,7 +2886,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.83, y: 16.4, z: 0.71}
+  m_Size: {x: 8.83, y: 16, z: 0.71}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &2055599930
 SpriteRenderer:
