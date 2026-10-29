@@ -36,6 +36,11 @@ public class enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (time_manager.instance.isDay)
+        {
+            Destroy(this);
+        }
+
         Stats player = FindAnyObjectByType<PlayerMovement>().gameObject.GetComponent<Stats>();
 
         adjustedChaseRange = chaseRange / player.Stealth;

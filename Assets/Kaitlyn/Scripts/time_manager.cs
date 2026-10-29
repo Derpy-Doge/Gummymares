@@ -37,6 +37,10 @@ public class time_manager : MonoBehaviour
         cameraController = GameObject.FindAnyObjectByType<CameraController>();
 
         threshold = 8;
+
+        GameObject player = GameObject.FindAnyObjectByType<PlayerMovement>().gameObject;
+
+        player.transform.position = playerSpawnPoint.position;
     }
 
 
@@ -66,6 +70,10 @@ public class time_manager : MonoBehaviour
             bearsKilled = 0;
             float newThreshold = threshold * 1.5f;
             threshold = (int)newThreshold;
+
+            GameObject player = GameObject.FindAnyObjectByType<PlayerMovement>().gameObject;
+
+            player.transform.position = playerSpawnPoint.position;
         }
 
         if (totalBearsKilled == totalBearThreshold && !isDay)
