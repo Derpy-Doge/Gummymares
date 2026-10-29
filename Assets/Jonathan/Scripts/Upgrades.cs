@@ -1,5 +1,4 @@
 using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,7 +25,6 @@ public class Upgrades : MonoBehaviour
     private int stealthUpgradeCount = 0;
     public int stealthUpgradeCost = 0;
 
-    public TextMeshProUGUI skillText; // for display in shop menu
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -56,15 +54,6 @@ public class Upgrades : MonoBehaviour
 
     public void AttackUpgrade() //0
     {
-        if (time_manager.instance.isDay)
-        {
-            if(skillText != null)
-            {
-                skillText.gameObject.SetActive(true);
-                skillText.text = "Skill Points: " + Leveling_System.instance.skill;
-            }
-        }
-
         if (ls.SpendSkill(attackUpgradeCost))
         {
             if (attackUpgradeCount <= 2)
