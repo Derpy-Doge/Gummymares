@@ -30,6 +30,8 @@ public class time_manager : MonoBehaviour
         {
             instance = this;
 
+            isDay = false;
+
         }
 
         cameraController = GameObject.FindAnyObjectByType<CameraController>();

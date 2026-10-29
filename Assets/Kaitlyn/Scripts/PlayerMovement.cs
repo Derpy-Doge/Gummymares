@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask targetLayer;
     private bool canAttack = true;
     private bool isAttacking = false;
+    public bool hasattackaudio = false;
 
     public float attackRadius;
     public float attackRange;
@@ -79,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
         _camController = FindAnyObjectByType<CameraController>();
         _controls = new InputSystem_Actions();
         LastDirection = transform.forward;
+        
 
         #region CamSwicth
         _controls.Player.SwitchCamera.performed += ctx =>
@@ -202,14 +204,17 @@ public class PlayerMovement : MonoBehaviour
         if (time_manager.instance.isDay)
         {
             _controls.Player.Disable();
+            Debug.Log("wake up");
         }
         else
         {
             _controls.Player.Enable();
+            Debug.Log("go sleep");
+
         }
 
 
-     
+
 
         if (_isDashing)
         {
@@ -370,13 +375,13 @@ public class PlayerMovement : MonoBehaviour
 
         isAttacking = false;
 
-        yield return !AudioManager.instance.playerSfxSource.isPlaying;
-        if (_controls.Player.Move.IsInProgress() && !AudioManager.instance.playerSfxSource.isPlaying)
-        {
-            AudioManager.instance.PlayPlayerSfx(AudioManager.instance.playerWalk);
-        }
+        //yield return !AudioManager.instance.playerSfxSource.isPlaying;
+        //if (_controls.Player.Move.IsInProgress() && !AudioManager.instance.playerSfxSource.isPlaying && hasattackaudio == true)
+        //{
+        //    AudioManager.instance.PlayPlayerSfx(AudioManager.instance.playerWalk);
+        //}
 
-        yield return new WaitForSeconds(coolDown);
+        //yield return new WaitForSeconds(coolDown);
        
         canAttack = true;
     }
@@ -462,7 +467,7 @@ public class PlayerMovement : MonoBehaviour
         float startTime = Time.time;
         while (Time.time < startTime + dashDuration)
         {
-            AddForce(_dashDirection * dashForce);
+            AddForce(_dashDirection * (dashForce * 0.1f));
             _characterController.Move(_movementVelocity + _externalMomentum * Time.deltaTime);
             yield return null;
         }
