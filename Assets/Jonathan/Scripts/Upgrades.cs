@@ -88,7 +88,7 @@ public class Upgrades : MonoBehaviour
             if (defenseUpgradeCount <= 2)
             {
                
-                pStats.Defense += 5;
+                pStats.Defense += 2;
                 defenseUpgradeCount++;
                 defenseUpgradeCost++;
 
@@ -196,5 +196,10 @@ public class Upgrades : MonoBehaviour
         {
             return;
         }
+    }
+
+    public void ContinueButton()
+    {
+        time_manager.instance.isDay = false;
     }
 }

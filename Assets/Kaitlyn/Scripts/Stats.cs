@@ -1,10 +1,12 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Stats : MonoBehaviour
 {
     public float Health_Max;
+    public Image healthBar;
     [HideInInspector]public float Health_Current;
     [Space(7f)]
 
@@ -70,6 +72,7 @@ public class Stats : MonoBehaviour
                 Leveling_System.instance.AddXp(Xp);
 
                 time_manager.instance.bearsKilled++;
+                time_manager.instance.totalBearsKilled++;
 
             }
 
@@ -80,6 +83,12 @@ public class Stats : MonoBehaviour
         {
             isDead = true;
             Debug.Log("YOURE DEAD CUH");
+        }
+
+        if (isPlayer)
+        {
+            if(healthBar != null)
+                healthBar.fillAmount = (Health_Current / Health_Max);
         }
 
 

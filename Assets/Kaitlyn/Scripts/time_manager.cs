@@ -5,11 +5,14 @@ public class time_manager : MonoBehaviour
 {
     public bool isDay;
     public int bearsKilled;
+    public int totalBearsKilled;
+    [SerializeField] private int totalBearThreshold = 50;
     public int threshold;
 
     private int interval;
 
-    public GameObject shopObject;
+    public GameObject dayUI;
+    public GameObject nightUI;
 
     public Transform playerSpawnPoint;
 
@@ -36,18 +39,22 @@ public class time_manager : MonoBehaviour
         threshold = 8;
     }
 
-    
+
     void Update()
     {
         if (isDay)
         {
             cameraController.isLocked = false;
 
-            
+            dayUI.SetActive(true);
+            nightUI.SetActive(false);
         }
         else
         {
             cameraController.isLocked = true;
+
+            nightUI.SetActive(true);
+            dayUI.SetActive(false);
 
             FakeTimer(bearsKilled);
         }
@@ -59,6 +66,11 @@ public class time_manager : MonoBehaviour
             bearsKilled = 0;
             float newThreshold = threshold * 1.5f;
             threshold = (int)newThreshold;
+        }
+
+        if (totalBearsKilled == totalBearThreshold && !isDay)
+        {
+            Bear5.spawned = true;
         }
     }
 

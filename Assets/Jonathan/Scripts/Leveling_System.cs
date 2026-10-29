@@ -37,15 +37,17 @@ public class Leveling_System : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(time_manager.instance.isDay) return;
+
         XpController();
     }
 
     public void XpController()
     {
        if (levelText == null)
-        {
+       {
             return;
-        }
+       }
 
         levelText.text = "Level: " + level.ToString();
 

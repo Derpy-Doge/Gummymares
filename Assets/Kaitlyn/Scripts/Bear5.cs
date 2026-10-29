@@ -78,6 +78,7 @@ public class Bear5 : MonoBehaviour
 
     public AudioSource bear5Audio;
 
+    public static bool spawned = false;
     public static bool defeated = false;
 
 
@@ -103,6 +104,11 @@ public class Bear5 : MonoBehaviour
     
     void Update()
     {
+        if (!spawned)
+        {
+            return;
+        }
+
         if(bear5Audio.clip == AudioManager.instance.Bear5Walk)
         {
             bear5Audio.loop = true;
@@ -117,6 +123,8 @@ public class Bear5 : MonoBehaviour
             defeated = true;
 
             Leveling_System.instance.AddXp(xp);
+
+            Destroy(transform.parent);
         }
 
             Collider[] hits = Physics.OverlapSphere(transform.position + Vector3.forward , meleeRange, targetMask);
@@ -140,7 +148,7 @@ public class Bear5 : MonoBehaviour
 
         if (pCount == 4)
         {
-            StartCoroutine(Stun());
+            StartCoroutine(Stun(stun));
             pCount = 0;
         }
 
@@ -169,7 +177,7 @@ public class Bear5 : MonoBehaviour
         Vector3 direction = (target.position - transform.parent.transform.position).normalized;
         direction.y = 0;
 
-        if (hits.Length == 0 && !canSW)
+        if (hits.Length == 0 && !canSW && !isSW && !isPunching)
         {
             rb.linearVelocity = new Vector3(direction.x, 0, direction.z) * moveSpeed * Time.deltaTime;
 
@@ -196,7 +204,7 @@ public class Bear5 : MonoBehaviour
     }
 
 
-    public IEnumerator Stun()
+    public IEnumerator Stun(float stun)
     {
         isStunned = true;
 
@@ -213,7 +221,7 @@ public class Bear5 : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         bear5Audio.clip = AudioManager.instance.Bear5Punch;
         bear5Audio.Play();
-        Collider[] Hits = Physics.OverlapSphere(transform.position + (Vector3.forward * 1.5f), pRadius, targetMask);
+        Collider[] Hits = Physics.OverlapSphere(transform.position + (Vector3.forward * 1.25f), pRadius, targetMask);
         foreach (Collider col in Hits)
         {
             if (col.gameObject.GetComponent<PlayerMovement>() && col.gameObject.GetComponent<Stats>())
@@ -391,6 +399,7 @@ public class Bear5 : MonoBehaviour
         swWarning.gameObject.SetActive(false);
         alreadyHit.Clear();
         yield return new WaitForSeconds(swCooldown);
+        StartCoroutine(Stun(stun/2));
 
         canSW = true;
         Debug.Log("e");
@@ -458,6 +467,6 @@ public class Bear5 : MonoBehaviour
 
         Gizmos.color = Color.darkOrchid;
 
-        Gizmos.DrawSphere(transform.position + (Vector3.forward * 1.5f), pRadius);
+        Gizmos.DrawSphere(transform.position + (Vector3.forward * 1.25f), pRadius);
     }
 }
