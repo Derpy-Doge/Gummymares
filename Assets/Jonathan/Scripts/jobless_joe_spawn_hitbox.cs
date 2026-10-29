@@ -37,10 +37,9 @@ public class Enemy_Spawn_Hitbox : MonoBehaviour
         Collider[] hits = Physics.OverlapSphere(transform.position, attackRadius, attackLayer);
         foreach (Collider col in hits)
         {
-            if (canAttack)
+            if (canAttack && enemy.canSeePlayer)
             {
-
-            StartCoroutine(Attack());
+                StartCoroutine(Attack());
             }
             else
             {
@@ -60,6 +59,8 @@ public class Enemy_Spawn_Hitbox : MonoBehaviour
         {
             enemySfxSource.clip = AudioManager.instance.enemyAttack;
             enemySfxSource.Play();
+
+            AudioManager.instance.PlayPlayerSfx(AudioManager.instance.playerHurt);
         }
 
         Collider[] hits = Physics.OverlapSphere(transform.position, attackRadius, attackLayer);

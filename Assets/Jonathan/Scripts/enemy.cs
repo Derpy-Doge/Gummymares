@@ -41,7 +41,6 @@ public class enemy : MonoBehaviour
         adjustedChaseRange = chaseRange / player.Stealth;
 
         FieldOfViewCheck();
-
         if (target != null && canSeePlayer)
         {          
             // Calculate the direction towards the target

@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public float dashCooldown = 2.5f;
 
     private bool _canDash = true;
-    private bool _isDashing = false;
+    public bool _isDashing = false;
     private Vector3 _dashDirection;
     [Space(7f)]
     //public float jumpForce = 5f;
@@ -71,8 +71,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _externalMomentum = Vector3.zero;
     public Vector3 LastDirection { get; private set; }
     public Vector3 LookingDirection { get; private set; }
-
-    public Bear5 bur4; // this is for dev testing
 
     private void Awake()
     {
@@ -181,12 +179,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 StartCoroutine(Attack());
             }
-        };
-
-
-        _controls.Player.Bur.performed += ctx =>
-        {
-            bur4.StartCoroutine(bur4.Shockwave());     
         };
     }
 
@@ -361,7 +353,15 @@ public class PlayerMovement : MonoBehaviour
                 Enemy.Health_Current -= calcdamage;
 
                 Debug.Log("Owie " + col.gameObject.name);
-            } 
+            }
+            else if (col.gameObject.GetComponent<Bear5>())
+            {
+                Bear5 bear5 = col.gameObject.GetComponent<Bear5>();
+                Stats player = GetComponent<Stats>();
+
+                float calcdamage = player.Attack_Power - bear5.defense;
+                bear5.Health_Current -= calcdamage;
+            }
             else
             {
                 Debug.Log("Bingus");
@@ -369,7 +369,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         isAttacking = false;
+
+        yield return !AudioManager.instance.playerSfxSource.isPlaying;
+        if (_controls.Player.Move.IsInProgress() && !AudioManager.instance.playerSfxSource.isPlaying)
+        {
+            AudioManager.instance.PlayPlayerSfx(AudioManager.instance.playerWalk);
+        }
+
         yield return new WaitForSeconds(coolDown);
+       
         canAttack = true;
     }
 
