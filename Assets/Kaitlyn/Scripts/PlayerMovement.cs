@@ -354,7 +354,7 @@ public class PlayerMovement : MonoBehaviour
 
                 Debug.Log("Owie " + col.gameObject.name);
             }
-            else if (col.gameObject.GetComponent<Bear5>())
+            else if (col.gameObject.GetComponent<Bear5>() && Bear5.spawned)
             {
                 Bear5 bear5 = col.gameObject.GetComponent<Bear5>();
                 Stats player = GetComponent<Stats>();
