@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemy
   target: {fileID: 0}
-  moveSpeed: 250
+  moveSpeed: 1
   chaseRange: 10
   xp: 25
   targetMask:

@@ -19,6 +19,11 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
+        if (Bear5.spawned)
+        {
+            spawners[0].canSpawn = false;
+        }
+
         foreach (EnemySpawnPoint esp in spawners)
         {
             if (!time_manager.instance.isDay && esp.canSpawn)

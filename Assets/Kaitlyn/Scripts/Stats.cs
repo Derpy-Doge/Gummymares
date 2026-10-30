@@ -64,6 +64,15 @@ public class Stats : MonoBehaviour
 
         bool expAwarded = false;
 
+        if (!isPlayer)
+        {
+            if (GetComponent<enemy>() != null && Bear5.spawned)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+
         if (Health_Current <= 0 && !isPlayer && !expAwarded)
         {       
             if(GetComponent<enemy>() != null)
@@ -82,8 +91,13 @@ public class Stats : MonoBehaviour
         if (Health_Current <= 0 && isPlayer && !isDead)
         {
             isDead = true;
+
             CameraController camcontroller = FindAnyObjectByType<CameraController>();
             camcontroller.isLocked = false;
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
             SceneManager.LoadScene("Kaitlyn White");
         }
 

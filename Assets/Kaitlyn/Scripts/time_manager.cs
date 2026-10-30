@@ -25,6 +25,11 @@ public class time_manager : MonoBehaviour
 
     public static time_manager instance;
 
+    private void Awake()
+    {
+
+    }
+
     void Start()
     {
         if (instance == null)
@@ -69,19 +74,22 @@ public class time_manager : MonoBehaviour
         {
             isDay = true;
 
-            bearsKilled = 0;
-            float newThreshold = threshold * 1.5f;
-            threshold = (int)newThreshold;
-
             GameObject player = GameObject.FindAnyObjectByType<PlayerMovement>().gameObject;
 
             player.transform.position = playerSpawnPoint.position;
             player.GetComponent<Stats>().Health_Current = player.GetComponent<Stats>().Health_Max;
+
+            bearsKilled = 0;
+            float newThreshold = threshold * 1.5f;
+            threshold = (int)newThreshold;
         }
 
         if (totalBearsKilled == totalBearThreshold && !isDay)
         {
             Bear5.spawned = true;
+
+            Bear5 bear = FindAnyObjectByType<Bear5>();
+            bear.StartCoroutine(S);
         }
     }
 
@@ -108,6 +116,6 @@ public class time_manager : MonoBehaviour
         float minutes = 60 * (time - Mathf.FloorToInt(time));
         int minutesInt = (int)minutes;
 
-        timerText.text = hours.ToString() + ":" + minutesInt.ToString();
+        timerText.text = hours.ToString("00") + ":" + minutesInt.ToString("00");
     }
 }
