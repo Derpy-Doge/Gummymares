@@ -182,6 +182,9 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(Attack());
             }
         };
+
+        _controls.Player.Attack.performed += ctx => time_manager.instance.DevTools();
+
     }
 
     void OnEnable()

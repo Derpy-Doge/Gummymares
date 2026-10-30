@@ -211,6 +211,16 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""Dev"",
+                    ""type"": ""Button"",
+                    ""id"": ""04ac6ce6-39e5-4b66-ad88-bdf2d6d29c3f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -629,6 +639,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Bur"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4ca4ed0f-7656-4621-8bab-a122fd8c9284"",
+                    ""path"": ""<Keyboard>/pageUp"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dev"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1238,6 +1259,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_SwitchCamera = m_Player.FindAction("SwitchCamera", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Bur = m_Player.FindAction("Bur", throwIfNotFound: true);
+        m_Player_Dev = m_Player.FindAction("Dev", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1343,6 +1365,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SwitchCamera;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Bur;
+    private readonly InputAction m_Player_Dev;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1402,6 +1425,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Bur".
         /// </summary>
         public InputAction @Bur => m_Wrapper.m_Player_Bur;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Dev".
+        /// </summary>
+        public InputAction @Dev => m_Wrapper.m_Player_Dev;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1464,6 +1491,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Bur.started += instance.OnBur;
             @Bur.performed += instance.OnBur;
             @Bur.canceled += instance.OnBur;
+            @Dev.started += instance.OnDev;
+            @Dev.performed += instance.OnDev;
+            @Dev.canceled += instance.OnDev;
         }
 
         /// <summary>
@@ -1511,6 +1541,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Bur.started -= instance.OnBur;
             @Bur.performed -= instance.OnBur;
             @Bur.canceled -= instance.OnBur;
+            @Dev.started -= instance.OnDev;
+            @Dev.performed -= instance.OnDev;
+            @Dev.canceled -= instance.OnDev;
         }
 
         /// <summary>
@@ -1895,6 +1928,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnBur(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Dev" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDev(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

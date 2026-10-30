@@ -27,6 +27,10 @@ public class time_manager : MonoBehaviour
 
     public static time_manager instance;
 
+
+    [SerializeField]private GameObject devMenu;
+    [SerializeField] private GameObject devMenuButtons;
+
     private void Awake()
     {
 
@@ -41,6 +45,8 @@ public class time_manager : MonoBehaviour
             isDay = false;
 
         }
+
+        devMenu.SetActive(false);
 
         cameraController = GameObject.FindAnyObjectByType<CameraController>();
 
@@ -125,4 +131,61 @@ public class time_manager : MonoBehaviour
 
         timerText.text = hours.ToString("00") + ":" + minutesInt.ToString("00");
     }
+
+
+    #region Dev Tools
+    public void DevTools()
+    {
+        if (devMenu.activeSelf)
+        {
+            devMenu.SetActive(false);
+            cameraController.isLocked = true;
+        }
+        else
+        {
+            devMenu.SetActive(true);
+            cameraController.isLocked = false;
+        }
+    }
+
+    public void IsDayBool()
+    {
+        if (isDay)
+        {
+            isDay = false;
+        }
+        else
+        {
+            isDay = true;
+        }
+    }
+
+    public void XPCheat()
+    {
+        Leveling_System.instance.AddXp(5000);
+    }
+
+    public void SkillPointCheat()
+    {
+        Leveling_System.instance.skill += (20);
+    }
+
+    public void SpawnBear5()
+    {
+        Bear5.spawned = true;
+    }
+
+    public void StatBoost()
+    {
+        Stats plyr = GameObject.FindAnyObjectByType<PlayerMovement>().GetComponent<Stats>();
+
+        plyr.Attack_Power += 100;
+        plyr.Defense += 100;
+        plyr.Speed += 3;
+        plyr.Health_Max += 1000;
+        plyr.Health_Current = plyr.Health_Max;
+        plyr.Stealth += 100;
+    }
+
+    #endregion
 }
