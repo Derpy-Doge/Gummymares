@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 using UnityEngine.VFX;
 using static Unity.Cinemachine.IInputAxisOwner.AxisDescriptor;
 
@@ -123,6 +124,8 @@ public class Bear5 : MonoBehaviour
             defeated = true;
 
             Leveling_System.instance.AddXp(xp);
+
+            SceneManager.LoadScene("win");
 
             Destroy(transform.parent.gameObject);
         }

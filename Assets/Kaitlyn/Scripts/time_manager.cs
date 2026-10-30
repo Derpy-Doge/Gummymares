@@ -12,7 +12,9 @@ public class time_manager : MonoBehaviour
     private int interval;
 
     public GameObject dayUI;
+    public GameObject shopButtons;
     public GameObject nightUI;
+    public GameObject levelText;
 
     public Transform playerSpawnPoint;
 
@@ -57,15 +59,20 @@ public class time_manager : MonoBehaviour
             cameraController.isLocked = false;
 
             dayUI.SetActive(true);
+            shopButtons.SetActive(true);
             skillText.text = "Skill Points: " + Leveling_System.instance.skill;
             nightUI.SetActive(false);
+            levelText.SetActive(false);
         }
         else
         {
             cameraController.isLocked = true;
 
             nightUI.SetActive(true);
+            levelText.SetActive(true);
+
             dayUI.SetActive(false);
+            shopButtons.SetActive(false);
 
             FakeTimer(bearsKilled);
         }
@@ -89,7 +96,7 @@ public class time_manager : MonoBehaviour
             Bear5.spawned = true;
 
             Bear5 bear = FindAnyObjectByType<Bear5>();
-            bear.StartCoroutine(S);
+            bear.StartCoroutine(bear.Stun(7f));
         }
     }
 
