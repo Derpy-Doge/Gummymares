@@ -5,6 +5,7 @@ public class ButtonMenu : MonoBehaviour
 {
     public void StartButton(string sceneName)
     {
+        Debug.Log("pressed button");
         SceneManager.LoadScene(sceneName);
     }
 
