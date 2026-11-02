@@ -47,7 +47,7 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        if (isLocked)
+        if (isLocked && !time_manager.instance.devVisible)
         {
             Cursor.lockState = CursorLockMode.Locked;
 

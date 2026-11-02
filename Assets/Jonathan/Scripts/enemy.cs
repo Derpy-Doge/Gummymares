@@ -14,7 +14,7 @@ public class enemy : MonoBehaviour
     public LayerMask targetMask;
     public LayerMask obstructionMask;
     [Range(0f, 360f)]
-    public float fovAngle; // currently dont use this caus eenemy sprite always faces player so its weird
+    public float fovAngle; // currently dont use this cause enemy sprite always faces player so its weird
     public bool canSeePlayer;
 
     public AudioSource enemyAudioSource; 
@@ -22,9 +22,10 @@ public class enemy : MonoBehaviour
 
 
     [HideInInspector]public Rigidbody rb;
-  
-    
-   
+    [HideInInspector] public Vector3 enemyDirection;
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,13 +40,17 @@ public class enemy : MonoBehaviour
         if (time_manager.instance.isDay)
         {
             Destroy(this.gameObject);
-
-            Debug.Log("icicle");
         }
 
         Stats player = FindAnyObjectByType<PlayerMovement>().gameObject.GetComponent<Stats>();
 
         adjustedChaseRange = chaseRange / player.Stealth;
+
+        Debug.DrawRay(transform.position, enemyDirection * 2f, Color.hotPink);
+        if (rb.linearVelocity.magnitude > 0.001f)
+        {
+            enemyDirection = rb.linearVelocity.normalized;
+        }
 
         FieldOfViewCheck();
         if (target != null && canSeePlayer)

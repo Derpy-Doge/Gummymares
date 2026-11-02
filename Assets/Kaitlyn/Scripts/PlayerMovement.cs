@@ -183,7 +183,7 @@ public class PlayerMovement : MonoBehaviour
             }
         };
 
-        _controls.Player.Attack.performed += ctx => time_manager.instance.DevTools();
+        _controls.Player.Dev.performed += ctx => time_manager.instance.DevTools();
 
     }
 
@@ -362,9 +362,9 @@ public class PlayerMovement : MonoBehaviour
 
                 Debug.Log("Owie " + col.gameObject.name);
             }
-            else if (col.gameObject.GetComponent<Bear5>() && Bear5.spawned)
+            else if (col.gameObject.transform.parent.GetComponent<Bear5>() && Bear5.spawned)
             {
-                Bear5 bear5 = col.gameObject.GetComponent<Bear5>();
+                Bear5 bear5 = col.gameObject.transform.parent.GetComponent<Bear5>();
                 Stats player = GetComponent<Stats>();
 
                 float calcdamage = player.Attack_Power - bear5.defense;
@@ -491,7 +491,7 @@ public class PlayerMovement : MonoBehaviour
         float startTime = Time.time;
         while (Time.time < startTime + dashDuration)
         {
-            AddForce(_dashDirection * (dashForce * 0.1f));
+            AddForce(_dashDirection * (dashForce * 0.5f));
             _characterController.Move(_movementVelocity + _externalMomentum * Time.deltaTime);
             yield return null;
         }

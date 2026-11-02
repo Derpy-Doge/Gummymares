@@ -30,6 +30,7 @@ public class time_manager : MonoBehaviour
 
     [SerializeField]private GameObject devMenu;
     [SerializeField] private GameObject devMenuButtons;
+    [HideInInspector] public bool devVisible;
 
     private void Awake()
     {
@@ -139,12 +140,12 @@ public class time_manager : MonoBehaviour
         if (devMenu.activeSelf)
         {
             devMenu.SetActive(false);
-            cameraController.isLocked = true;
+            devVisible = false;
         }
         else
         {
             devMenu.SetActive(true);
-            cameraController.isLocked = false;
+            devVisible = true;
         }
     }
 
