@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -18,6 +19,7 @@ public class Bear5 : MonoBehaviour
     public float moveSpeed;
     public Transform target;
     private Rigidbody rb;
+    [HideInInspector] public Vector3 bearDirection;
 
     [Space(5f)]
     public float meleeRange = 1.5f;
@@ -67,7 +69,6 @@ public class Bear5 : MonoBehaviour
     public float crushRadius = 1f;
     public float crushForce = 1f;
     [Space(3f)]
-    private bool isExpanding = false;
     private bool canSW = true;
     private bool isSW = false;
     public float swCooldown = 20f;
@@ -130,7 +131,13 @@ public class Bear5 : MonoBehaviour
             Destroy(transform.parent.gameObject);
         }
 
-            Collider[] hits = Physics.OverlapSphere(transform.position + Vector3.forward , meleeRange, targetMask);
+        Vector3 direction = (target.position - transform.parent.transform.position).normalized;
+        direction.y = 0;
+
+        Debug.DrawRay(transform.position, bearDirection * 2f, Color.hotPink);
+        bearDirection = direction;
+
+        Collider[] hits = Physics.OverlapSphere(transform.position + bearDirection, meleeRange, targetMask);
         foreach (Collider col in hits)
         {
             if (col.gameObject.GetComponent<PlayerMovement>() && col.gameObject.GetComponent<Stats>())
@@ -177,8 +184,6 @@ public class Bear5 : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
         }
 
-        Vector3 direction = (target.position - transform.parent.transform.position).normalized;
-        direction.y = 0;
 
         if (hits.Length == 0 && !canSW && !isSW && !isPunching)
         {
@@ -224,7 +229,7 @@ public class Bear5 : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         bear5Audio.clip = AudioManager.instance.Bear5Punch;
         bear5Audio.Play();
-        Collider[] Hits = Physics.OverlapSphere(transform.position + (Vector3.forward * 1.25f), pRadius, targetMask);
+        Collider[] Hits = Physics.OverlapSphere(transform.position + (bearDirection * 1.25f), pRadius, targetMask);
         foreach (Collider col in Hits)
         {
             if (col.gameObject.GetComponent<PlayerMovement>() && col.gameObject.GetComponent<Stats>())
@@ -248,6 +253,7 @@ public class Bear5 : MonoBehaviour
 
         isPunching = false;
         pCount++;
+        alreadyHit.Clear();
         yield return new WaitForSeconds(pCooldown);
         canPunch = true;
     }
@@ -466,10 +472,10 @@ public class Bear5 : MonoBehaviour
 
         Gizmos.color = Color.firebrick;
 
-        Gizmos.DrawSphere(transform.position + Vector3.forward, meleeRange);
+        Gizmos.DrawSphere(transform.position + bearDirection, meleeRange);
 
         Gizmos.color = Color.darkOrchid;
 
-        Gizmos.DrawSphere(transform.position + (Vector3.forward * 1.25f), pRadius);
+        Gizmos.DrawSphere(transform.position + (bearDirection * 1.25f), pRadius);
     }
 }

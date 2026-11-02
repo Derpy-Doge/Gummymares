@@ -22,7 +22,6 @@ public class enemy : MonoBehaviour
 
 
     [HideInInspector]public Rigidbody rb;
-    [HideInInspector] public Vector3 enemyDirection;
 
 
 
@@ -45,12 +44,6 @@ public class enemy : MonoBehaviour
         Stats player = FindAnyObjectByType<PlayerMovement>().gameObject.GetComponent<Stats>();
 
         adjustedChaseRange = chaseRange / player.Stealth;
-
-        Debug.DrawRay(transform.position, enemyDirection * 2f, Color.hotPink);
-        if (rb.linearVelocity.magnitude > 0.001f)
-        {
-            enemyDirection = rb.linearVelocity.normalized;
-        }
 
         FieldOfViewCheck();
         if (target != null && canSeePlayer)

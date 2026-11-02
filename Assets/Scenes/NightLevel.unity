@@ -15392,7 +15392,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 961739753}
   verticalMouseSensitivity: 40
   horizontalMouseSensitivity: 30
-  horizontalDeadzoneAngle: 80
+  horizontalDeadzoneAngle: 0
   verticalMinAngle: 56
   verticalMaxAngle: 90
   isLocked: 1
@@ -34079,63 +34079,6 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
---- !u!1001 &1906931392
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3376632547325475317, guid: 7551278ae61e1204d971df289c395991, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -14.98258
-      objectReference: {fileID: 0}
-    - target: {fileID: 3376632547325475317, guid: 7551278ae61e1204d971df289c395991, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.81
-      objectReference: {fileID: 0}
-    - target: {fileID: 3376632547325475317, guid: 7551278ae61e1204d971df289c395991, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 10.041841
-      objectReference: {fileID: 0}
-    - target: {fileID: 3376632547325475317, guid: 7551278ae61e1204d971df289c395991, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3376632547325475317, guid: 7551278ae61e1204d971df289c395991, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3376632547325475317, guid: 7551278ae61e1204d971df289c395991, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3376632547325475317, guid: 7551278ae61e1204d971df289c395991, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3376632547325475317, guid: 7551278ae61e1204d971df289c395991, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3376632547325475317, guid: 7551278ae61e1204d971df289c395991, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3376632547325475317, guid: 7551278ae61e1204d971df289c395991, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8509105983009453452, guid: 7551278ae61e1204d971df289c395991, type: 3}
-      propertyPath: m_Name
-      value: bear5 Parent (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7551278ae61e1204d971df289c395991, type: 3}
 --- !u!43 &1917768978
 Mesh:
   m_ObjectHideFlags: 0
@@ -34683,7 +34626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6813128967085015905, guid: 7551278ae61e1204d971df289c395991, type: 3}
       propertyPath: Health_Max
-      value: 100
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 8509105983009453452, guid: 7551278ae61e1204d971df289c395991, type: 3}
       propertyPath: m_Name
@@ -135192,4 +135135,3 @@ SceneRoots:
   - {fileID: 1928758214}
   - {fileID: 180771808}
   - {fileID: 386921114}
-  - {fileID: 1906931392}

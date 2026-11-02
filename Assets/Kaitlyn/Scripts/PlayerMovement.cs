@@ -204,21 +204,6 @@ public class PlayerMovement : MonoBehaviour
         GameObject camera = _camController.gameObject; //_camController.gameObject;
         _camController._MouseInput = _controls.Player.Look.ReadValue<Vector2>();
 
-        if (time_manager.instance.isDay)
-        {
-            _controls.Player.Disable();
-            Debug.Log("wake up");
-        }
-        else
-        {
-            _controls.Player.Enable();
-            Debug.Log("go sleep");
-
-        }
-
-
-
-
         if (_isDashing)
         {
             return;
@@ -470,7 +455,7 @@ public class PlayerMovement : MonoBehaviour
         float startTime = Time.time;
         while (Time.time < startTime + dashDuration)
         {
-            AddForce(_dashDirection * (dashForce * 0.1f));
+            AddForce(_dashDirection * (dashForce * 0.15f));
             _characterController.Move(_movementVelocity + _externalMomentum * Time.deltaTime);
             yield return null;
         }
@@ -491,7 +476,7 @@ public class PlayerMovement : MonoBehaviour
         float startTime = Time.time;
         while (Time.time < startTime + dashDuration)
         {
-            AddForce(_dashDirection * (dashForce * 0.5f));
+            AddForce(_dashDirection * (dashForce * 0.3f));
             _characterController.Move(_movementVelocity + _externalMomentum * Time.deltaTime);
             yield return null;
         }
