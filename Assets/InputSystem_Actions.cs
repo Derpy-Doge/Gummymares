@@ -633,6 +633,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""f946689b-e42c-46fe-a952-5a1408858525"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""6f9ea9df-e941-46b4-97b2-aaa630da48f0"",
                     ""path"": ""<Keyboard>/insert"",
                     ""interactions"": """",
