@@ -34,7 +34,9 @@ public class time_manager : MonoBehaviour
 
     private void Awake()
     {
+        GameObject player = GameObject.FindAnyObjectByType<PlayerMovement>().gameObject;
 
+        player.transform.position = playerSpawnPoint.position;
     }
 
     void Start()
@@ -84,7 +86,7 @@ public class time_manager : MonoBehaviour
             FakeTimer(bearsKilled);
         }
 
-        if (bearsKilled == threshold && !isDay)
+        if (bearsKilled >= threshold && !isDay)
         {
             isDay = true;
 

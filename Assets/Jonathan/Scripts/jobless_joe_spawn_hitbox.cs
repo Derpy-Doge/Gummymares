@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Enemy_Spawn_Hitbox : MonoBehaviour
 {

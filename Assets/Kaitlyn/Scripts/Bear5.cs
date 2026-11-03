@@ -1,15 +1,10 @@
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.VFX;
-using static Unity.Cinemachine.IInputAxisOwner.AxisDescriptor;
+
 
 public class Bear5 : MonoBehaviour
 {

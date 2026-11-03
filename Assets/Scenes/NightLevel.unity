@@ -2603,7 +2603,7 @@ MonoBehaviour:
   isDay: 0
   bearsKilled: 0
   totalBearsKilled: 0
-  totalBearThreshold: 8
+  totalBearThreshold: 66
   threshold: 8
   dayUI: {fileID: 821896906}
   shopButtons: {fileID: 183237351}
@@ -5547,7 +5547,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 63.45
+  m_fontSize: 63.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -34625,8 +34625,32 @@ PrefabInstance:
       value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 6813128967085015905, guid: 7551278ae61e1204d971df289c395991, type: 3}
+      propertyPath: xp
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813128967085015905, guid: 7551278ae61e1204d971df289c395991, type: 3}
+      propertyPath: stun
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813128967085015905, guid: 7551278ae61e1204d971df289c395991, type: 3}
+      propertyPath: swDamage
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813128967085015905, guid: 7551278ae61e1204d971df289c395991, type: 3}
+      propertyPath: pCooldown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813128967085015905, guid: 7551278ae61e1204d971df289c395991, type: 3}
       propertyPath: Health_Max
-      value: 500
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813128967085015905, guid: 7551278ae61e1204d971df289c395991, type: 3}
+      propertyPath: swCooldown
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813128967085015905, guid: 7551278ae61e1204d971df289c395991, type: 3}
+      propertyPath: crushDamage
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8509105983009453452, guid: 7551278ae61e1204d971df289c395991, type: 3}
       propertyPath: m_Name
